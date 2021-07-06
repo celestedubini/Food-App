@@ -8,5 +8,19 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      primaryKey: true,
+    },
+    summary: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    score: {
+      type: DataTypes.INTEGER,
+    },
+    healthScore: {type: DataTypes.INTEGER},
+    step2step: {type: DataTypes.JSON}
   });
 };
