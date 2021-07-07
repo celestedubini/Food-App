@@ -1,6 +1,8 @@
 const { Recipe } = require("../db")
-//const {BASE_URL} = require("..")
-const {v4: uuidv4} = require('uuid');
+//const { BASE_URL } = require("../../constants")
+const { v4: uuidv4 } = require('uuid');
+//const { apikey } = process.env;
+const axios = require('axios');
 
 
 // async function addRecipe(req, res, next) {
@@ -17,21 +19,37 @@ const {v4: uuidv4} = require('uuid');
 // }
 
 async function addRecipe(request, response, next) {
-	const id = uuidv4();
-	const recipeBody = {...request.body, id};
-	try {
-		const createdRecipe = await Recipe.create(recipeBody);
-		return response.send(createdRecipe);
-	} catch (error) {
-		next(error);
-	}
+    const id = uuidv4();
+    const recipeBody = { ...request.body, id };
+    try {
+        const createdRecipe = await Recipe.create(recipeBody);
+        return response.send(createdRecipe);
+    } catch (error) {
+        next(error);
+    }
 }
 
+// function getAllRecipes(req, res, next) {
+//     const recipeApi = axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=469b0c76ee9c4576b19d44e490dc6552`);
+//     const recipeDB = Recipe.findAll();
+//     Promise.all([recipeApi, recipeDB])
+//         .then((res) => {
+//             let [recipeApiRes, recipeDBres] = res;
+//             return res.send((recipeDBres).concat(recipeApiRes.data));
+//         })
+//         .catch ((err) => next(err));
+// }
+
 function getAllRecipes(req, res, next) {
-    //const recipeApi = axios.get(`$`)
-    return Recipe.findAll()
-        .then((recipes) => res.send(recipes))
-        .catch(err => next(err));
+	const recipeApi = axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=469b0c76ee9c4576b19d44e490dc6552`);
+	const recipeDB = Recipe.findAll();
+	Promise.all([recipeApi, recipeDB])
+		.then((respuesta) => {
+			let [recipeApiRes, recipeDBres] = respuesta;
+			return res.send(
+				res.send((recipeDBres).concat(recipeApiRes.data))
+        )})
+		.catch((err) => next(err));
 }
 
 module.exports = {
