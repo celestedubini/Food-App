@@ -1,7 +1,9 @@
 const { Router } = require("express");
+const {getAllRecipes, addRecipe} = require("../controllers/Recipe")
 
 const router = Router()
 
-router.get("/", (req, res) => {res.send("holis funciona el recipes")})
+router.get("/recipes", getAllRecipes)
+router.post("/recipe", addRecipe)
 
 module.exports = router;
