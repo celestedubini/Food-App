@@ -41,27 +41,91 @@ const infoApi = async () => {
 
 
 
-async function addRecipe(request, response, next) {
-  const id = uuidv4();
-  const recipeBody = { ...request.body, id };
-  try {
-    const createdRecipe = await Recipe.create(recipeBody);
-    //Formulario de como se carga la receta, despues la persona le dice que tipo de dieta.
-    //TypeDiets for each, dieta que coincida con la base de datos y setTypes
-    // genres.forEach(async (genre) => {
-    //     let genreThatMatchesDb = await Genre.findOne({
-    //       where: {
-    //         name: genre,
-    //       },
-    //     });
-    //     game.addGenre(genreThatMatchesDb);    El addtabla
-    //   });
-    return response.send(createdRecipe);
-  } catch (error) {
-    next(error);
-  }
+// async function addRecipe(request, response, next) {
+//   const id = uuidv4();
+//   const recipeBody = { ...request.body, id };
+//   try {
+//     const createdRecipe = await Recipe.create(recipeBody);
+//     //Formulario de como se carga la receta, despues la persona le dice que tipo de dieta.
+//     //TypeDiets for each, dieta que coincida con la base de datos y setTypes
+//     // genres.forEach(async (genre) => {
+//     //     let genreThatMatchesDb = await Genre.findOne({
+//     //       where: {
+//     //         name: genre,
+//     //       },
+//     //     });
+//     //     game.addGenre(genreThatMatchesDb);    El addtabla
+//     //   });
+//     return response.send(createdRecipe);
+//   } catch (error) {
+//     next(error);
+//   }
+// }
+
+// const addRecipe = async (req, res)=> {
+
+
+
+function addRecipe(req, res, next) {
+  const { name, summary, score, healthScore, step2step, typeDiets } = req.body;
+  Recipe.create({
+    id: uuidv4(),
+    name: name,
+    summary: summary,
+    score: score,
+    healthScore: healthScore,
+    step2step: step2step,
+  })
+    .then((recipeCreated) => {
+      return recipeCreated.addTypeDiets(typeDiets);
+    })
+    .then(newRecipe => {
+      return res.json({
+        message: 'Recipe created successfully',
+      });
+    })
+    .catch((error) => next(error));
 }
 
+
+
+
+// async function addRecipe(req, res, next) {
+//   try {
+//     const {
+//       name,
+//       summary,
+//       score,
+//       healthScore,
+//       step2step,
+//       TypeDiet
+//     } = req.body;
+//     const createdRecipe = await Recipe.create({
+//       name,
+//       summary,
+//       score,
+//       healthScore,
+//       step2step,
+//       id: uuidv4()});
+
+//     await page.setUser(user[0])
+//     console.log(categories)
+//     if (Array.isArray(categories)) {
+//       categoriesResult = await Promise.all(
+//         categories.map(value => Category.findByPk(value))
+//       )
+//     } else {
+//       categoriesResult = await Promise.all([
+//         Category.findByPk(parseInt(categories))
+//       ])
+//     }
+//     await page.setCategories(categoriesResult)
+
+//     res.redirect(page.route)
+//   } catch (error) {
+
+//   }
+// }
 
 async function getByName(req, res, next) {
   //return res.send("holis");
