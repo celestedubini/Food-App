@@ -28,11 +28,11 @@ const { Sequelize } = require("sequelize")
 // };
 
 function addRecipe(req, res, next) {
-  const { name, summary, score, healthScore, step2step, typeDiets } = req.body;
-  if (!name || !summary) return res.send({ error: 500, message: "Necesitas ponerle minimo un name y un summary en el body reina" });
+  const { title, summary, score, healthScore, step2step, typeDiets } = req.body;
+  if (!title || !summary) return res.send({ error: 500, message: "Necesitas ponerle minimo un name y un summary en el body reina" });
   Recipe.create({
     id: uuidv4(),
-    name: name,
+    title: title,
     summary: summary,
     score: score,
     healthScore: healthScore,
@@ -67,7 +67,7 @@ async function getAllRecipes(req, res, next) {
       const filteredRecipeApi = await recipeApi.data.results.filter(recipe => recipe.title.includes(query))
       const recipeDB = Recipe.findAll({
               where: {
-                name: {
+                title: {
                   [Sequelize.Op.iLike]: `%${query}%` //%${} con esto se fija que en alguna parte de todo el string este eso
                 },
               },
