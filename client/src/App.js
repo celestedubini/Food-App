@@ -1,11 +1,13 @@
 import './App.css';
 import RecipesCard from './modules/RecipesCard';
+import LandingPage from './modules/LandingPage';
+import { Route } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <h1>Henry Food</h1>
-      <RecipesCard/>
+      <Route exact path="/" component={LandingPage}/>
+      <Route exact path="/home" component={RecipesCard}/>
     </div>
   );
 }

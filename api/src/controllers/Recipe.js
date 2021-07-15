@@ -54,7 +54,14 @@ async function getAllRecipes(req, res, next) {
   const query = req.query.name;
   if (!query) {
     const recipeApi = axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${YOUR_API_KEY}&number=100`);
-    const recipeDB = Recipe.findAll();
+    const recipeDB = Recipe.findAll({include: {
+      model: TypeDiet,
+      attributes: ["name"],
+      through: {
+        attributes: []
+      }
+    }
+  });
     Promise.all([recipeApi, recipeDB])
       .then((respuesta) => {
         let [recipeApiRes, recipeDBres] = respuesta;
@@ -97,7 +104,13 @@ async function getRecipeById(req, res) {
     res.json(response.data)
   } catch (error) {
     if (error.response?.status === 404) {
-      Recipe.findByPk(req.params.id).then(recipe => {
+      Recipe.findByPk(req.params.id, { include: {
+        model: TypeDiet,
+        attributes: ["name"],
+        through: {
+          attributes: []
+        }
+      }}).then(recipe => {
         if (recipe) return res.json(recipe)
         return res.sendStatus(404)
       })

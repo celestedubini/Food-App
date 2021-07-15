@@ -1,23 +1,23 @@
 import React from 'react'
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useEffect } from "react";
 import { BASE_URL, ALL_RECIPES } from "../../constants"
+import { connect } from 'react-redux';
+import { getRecipes } from '../../store/actions/RecipesActions';
 
-function RecipesCard() {
-    const [recipes, setRecipes] = useState([]);
-    function getRecipes() {
-        return axios.get("http://localhost:3001/recipes")
-            .then(recipes => setRecipes(recipes.data))
-    }
-    useEffect(() => {
+function RecipesCard({recipes, getRecipes}) {
+    function getRecipesFunction(){
         getRecipes()
+    } 
+    useEffect(() => {
+        getRecipesFunction()
     }, [])
     return (
         <div>
+            <h1>Henry Food</h1>
             {recipes.map((recipe) => {
-                return <div>
+                return <div key={recipe.id}>
                     <p>{recipe.title}</p>
-                    <img src={recipe.image}></img>
+                    <img src={recipe.image} alt="Foto de la receta"></img>
                     <p>Tipos de dieta: {recipe.diets}</p>
                 </div>
             })}
@@ -25,4 +25,18 @@ function RecipesCard() {
     )
 }
 
-export default RecipesCard
+const mapStateToProps = state => {
+    return {
+        recipes: state.recipes
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getRecipes: recipes => {
+            dispatch(getRecipes(recipes))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipesCard)
