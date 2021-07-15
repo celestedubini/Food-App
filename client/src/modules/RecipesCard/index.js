@@ -18,6 +18,7 @@ function RecipesCard() {
                 return <div>
                     <p>{recipe.title}</p>
                     <img src={recipe.image}></img>
+                    <p>Tipos de dieta: {recipe.diets}</p>
                 </div>
             })}
         </div>

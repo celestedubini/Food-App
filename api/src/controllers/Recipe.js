@@ -37,6 +37,7 @@ function addRecipe(req, res, next) {
     score: score,
     healthScore: healthScore,
     step2step: step2step,
+    image: "https://i.pinimg.com/originals/57/11/ff/5711ff78c1e72030bcc46bf63f068f68.jpg"
   })
     .then((recipeCreated) => {
       return recipeCreated.addTypeDiets(typeDiets);
@@ -63,22 +64,22 @@ async function getAllRecipes(req, res, next) {
       })
       .catch((err) => next(err));
   } else {
-      const recipeApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${YOUR_API_KEY}&number=100`);
-      const filteredRecipeApi = await recipeApi.data.results.filter(recipe => recipe.title.includes(query))
-      const recipeDB = Recipe.findAll({
-              where: {
-                title: {
-                  [Sequelize.Op.iLike]: `%${query}%` //%${} con esto se fija que en alguna parte de todo el string este eso
-                },
-              },
-              include: {
-                model: TypeDiet,
-                attributes: ["name"],
-                through: {
-                  attributes: []
-                }
-              }
-            });
+    const recipeApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${YOUR_API_KEY}&number=100`);
+    const filteredRecipeApi = await recipeApi.data.results.filter(recipe => recipe.title.includes(query))
+    const recipeDB = Recipe.findAll({
+      where: {
+        title: {
+          [Sequelize.Op.iLike]: `%${query}%` //%${} con esto se fija que en alguna parte de todo el string este eso
+        },
+      },
+      include: {
+        model: TypeDiet,
+        attributes: ["name"],
+        through: {
+          attributes: []
+        }
+      }
+    });
     Promise.all([filteredRecipeApi, recipeDB])
       .then((respuesta) => {
         let [filteredRecipeApi, recipeDBres] = respuesta;
@@ -87,7 +88,8 @@ async function getAllRecipes(req, res, next) {
         );
       })
       .catch((err) => next(err));
-}}
+  }
+}
 
 async function getRecipeById(req, res) {
   try {
