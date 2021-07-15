@@ -18,7 +18,7 @@ function RecipesCard({recipes, getRecipes}) {
                 return <div key={recipe.id}>
                     <p>{recipe.title}</p>
                     <img src={recipe.image} alt="Foto de la receta"></img>
-                    <p>Tipos de dieta: {recipe.diets}</p>
+                    <p>Tipos de dieta: {recipe.diets? recipe.diets : recipe.typeDiets.map(diet => diet.name)}</p>
                 </div>
             })}
         </div>
