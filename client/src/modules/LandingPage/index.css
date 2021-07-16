@@ -1,0 +1,11 @@
+.body {
+    background: #131217;
+    background-repeat: no-repeat;
+	background-size: cover;
+	margin-top: 0%;
+	padding: 0%;
+	height: 100vh;
+    align-items: center;
+    box-sizing: border-box;
+    color: #FFFFFF
+}
