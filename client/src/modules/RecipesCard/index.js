@@ -4,13 +4,15 @@ import { BASE_URL, ALL_RECIPES } from "../../constants"
 import { connect } from 'react-redux';
 import { getRecipes } from '../../store/actions/RecipesActions';
 import "./index.css";
+import { NavLink } from 'react-router-dom';
 
 const renderData = (recipes) => {
     return (<div>
         {recipes.map((recipe) => {
             return <div key={recipe.id}>
+                <NavLink to={`/home/${recipe.id}`}>
                 <p>{recipe.title}</p>
-                <img src={recipe.image} alt="Foto de la receta"></img>
+                <img src={recipe.image} alt="Foto de la receta"></img></NavLink>
                 <p>Tipos de dieta: {recipe.diets? recipe.diets : recipe.typeDiets.map(diet => diet.name)}</p>
             </div>
         })}</div>)}

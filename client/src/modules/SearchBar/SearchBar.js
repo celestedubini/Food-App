@@ -1,28 +1,31 @@
 import React from 'react'
 import { getByName } from '../../store/actions/RecipesActions';
+import {useState} from "react"
+import { connect } from 'react-redux';
 
 function SearchBar(props) {
-    const [title, setTitle] = useState("");
+    const [name, setName] = useState("");
     function handleChange(event) {
-        setName({ title: event.target.value });
+        setName(event.target.value);
       }
      function handleSubmit(event) {
-        event.preventDefault(); //Previene que la página recargue de vuelta
-        props.getByName(title.name) //Sigue utilizando el estado local para el input
+        event.preventDefault(); 
+        props.getByName(name) 
+        setName("")
       }
     return (
         <form className="form-container" onSubmit={(e) => handleSubmit(e)}>
         <div>
-          <label className="label" htmlFor="title">Película: </label>
           <input
             type="text"
             id="title"
+            placeholder="Recipe Name"
             autoComplete="off"
-            value={title} //El valor es el estado local
-            onChange={(e) => handleChange(e)} //Esto actualiza el estado cada vez que escribo en el input
+            value={name}
+            onChange={(e) => handleChange(e)}
           />
         </div>
-        <button type="submit">BUSCAR</button>
+        <button type="submit">Search</button>
       </form>
     )
 }
