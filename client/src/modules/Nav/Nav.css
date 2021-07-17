@@ -8,6 +8,7 @@
   align-items: center;
   background: #131217 0% 0% no-repeat padding-box;
   justify-content: space-between;
+  color: white;
 }
 
 .titulo{
@@ -15,7 +16,6 @@ display: flex;
 flex-flow:wrap;
 padding: 3px;
 align-items: center;
-color: white;
 font-weight:600;
 font-size: large;
 }

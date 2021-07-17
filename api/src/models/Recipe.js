@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    score: {
+    spoonacularScore: {
       type: DataTypes.INTEGER,
     },
     healthScore: { type: DataTypes.INTEGER },
