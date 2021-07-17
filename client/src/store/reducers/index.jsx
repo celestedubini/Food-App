@@ -2,7 +2,7 @@ import { GET_RECIPES, GET_RECIPES_BY_NAME, GET_RECIPE_DETAIL, GET_TYPES } from "
 
 const INITIAL_STATE = {
     recipes: [],
-    recipeDetail: {},
+    recipeDetail: [],
     typeDiets: []
 };
 

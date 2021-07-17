@@ -13,6 +13,11 @@ function Nav({onSearch}) {
           Home
         </span>
       </NavLink>
+      <NavLink to='/recipe'>
+        <span className="titulo">
+          Create Recipe
+        </span>
+      </NavLink>
         <SearchBar
         />
     </nav>
