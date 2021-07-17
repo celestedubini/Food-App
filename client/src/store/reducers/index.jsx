@@ -1,4 +1,4 @@
-import { GET_RECIPES, GET_RECIPES_BY_NAME, GET_RECIPE_DETAIL, GET_TYPES } from "../actions/RecipesActions";
+import { GET_RECIPES, GET_RECIPES_BY_NAME, GET_RECIPE_DETAIL, GET_TYPES, ASC, DESC } from "../actions/RecipesActions";
 
 const INITIAL_STATE = {
     recipes: [],
@@ -19,6 +19,21 @@ const reducer = (state = INITIAL_STATE, action) => {
             ...state, recipeDetail: action.payload,
         }
         case GET_TYPES: return {...state, typeDiets: action.payload}
+        case ASC:
+			return {
+				...state,
+				recipes: state.recipes
+					.filter((b) => b.title !== null)
+					.sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1)),
+			};
+
+		case DESC:
+			return {
+				...state,
+				recipes: state.recipes
+					.filter((b) => b.title !== null)
+					.sort((a, b) => (a.title.toLowerCase() < b.title.toLowerCase() ? 1 : -1)),
+			};
         default:
             return { ...state };
     }

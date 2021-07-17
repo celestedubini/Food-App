@@ -3,6 +3,7 @@ import React from 'react';
 import './Nav.css';
 import { NavLink } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
+import Filter from '../Filter/Filter';
 
 
 function Nav({onSearch}) {
@@ -20,6 +21,7 @@ function Nav({onSearch}) {
       </NavLink>
         <SearchBar
         />
+        <Filter/>
     </nav>
   );
 };

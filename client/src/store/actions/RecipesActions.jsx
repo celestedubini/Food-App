@@ -3,6 +3,8 @@ export const GET_RECIPES = "GET_RECIPES";
 export const GET_RECIPES_BY_NAME = "GET_RECIPES_BY_NAME";
 export const GET_RECIPE_DETAIL = "GET_RECIPE_DETAIL";
 export const GET_TYPES = "GET_TYPES";
+export const ASC = 'ASC';
+export const DESC = 'DESC';
 
 export function getRecipes() {
     return function (dispatch) {
@@ -46,4 +48,16 @@ export function getTypes() {
             })
         })
     }
+}
+
+export function getOrder(value) {
+	if (value === 'ASC') {
+		return {
+			type: 'ASC',
+		};
+	} else {
+		return {
+			type: 'DESC',
+		};
+	}
 }
