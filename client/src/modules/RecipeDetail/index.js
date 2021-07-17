@@ -27,7 +27,7 @@ class RecipeDetail extends React.Component {
                         <img src={this.props.recipeId.image} alt={"img"} />
                         {/* <p>Types of Diet: {this.props.recipeId.diets? this.props.recipeId.diets : this.props.recipeId.typeDiets.map(diet => diet.name)}</p> */}
                         <p>Summary: {this.props.recipeId.summary}</p>
-                        <p>Score: {this.props.recipeId.spoonacularScore? this.props.recipeId.spoonacularScore : this.props.recipeId.score}</p>
+                        <p>Score: {this.props.recipeId.spoonacularScore}</p>
                         <p>Health Score: {this.props.recipeId.healthScore}</p>
                         {/* <p>Steps: {this.props.recipeId.analyzedInstructions}</p> */}
                     </div>

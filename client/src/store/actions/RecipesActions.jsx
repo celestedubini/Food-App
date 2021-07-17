@@ -5,6 +5,8 @@ export const GET_RECIPE_DETAIL = "GET_RECIPE_DETAIL";
 export const GET_TYPES = "GET_TYPES";
 export const ASC = 'ASC';
 export const DESC = 'DESC';
+export const MINMAX = "MINMAX";
+export const MAXMIN = "MAXMIN"
 
 export function getRecipes() {
     return function (dispatch) {
@@ -58,6 +60,18 @@ export function getOrder(value) {
 	} else {
 		return {
 			type: 'DESC',
+		};
+	}
+}
+
+export function getOrderByScore(value) {
+	if (value === 'MINMAX') {
+		return {
+			type: 'MINMAX',
+		};
+	} else {
+		return {
+			type: 'MAXMIN',
 		};
 	}
 }

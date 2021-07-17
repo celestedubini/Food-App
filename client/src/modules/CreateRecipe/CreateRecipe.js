@@ -26,7 +26,7 @@ export default function Form() {
     const [input, setInput] = React.useState({
         title: '',
         summary: '',
-        score: '',
+        spoonacularScore: '',
         healthScore:'',
         step2step:'', 
         typeDiets: []
@@ -75,8 +75,8 @@ export default function Form() {
             </div>
             <div>
                 <label>Score:</label>
-                <input type="number" name="score" min="0" max="100"
-                    onChange={handleInputChange} value={input.score} />
+                <input type="number" name="spoonacularScore" min="0" max="100"
+                    onChange={handleInputChange} value={input.spoonacularScore} />
             </div>
             <div>
                 <label>Health Score:</label>
