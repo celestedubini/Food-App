@@ -13,7 +13,7 @@ const renderData = (recipes) => {
                 <NavLink to={`/home/${recipe.id}`}>
                 <p>{recipe.title}</p>
                 <img src={recipe.image} alt="Foto de la receta"></img></NavLink>
-                <p>Types of Diet: {recipe.diets? recipe.diets : recipe.typeDiets.map(diet => diet.name)}</p>
+                <p>Types of Diet: {recipe.diets? recipe.diets.map(diet => diet).join(", "): recipe.typeDiets.map(diet => diet.name).join(", ")}</p>
             </div>
         })}</div>)}
 

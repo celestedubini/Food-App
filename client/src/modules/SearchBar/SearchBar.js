@@ -14,7 +14,7 @@ function SearchBar(props) {
         setName("")
       }
     return (
-        <form className="form-container" onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={(e) => handleSubmit(e)}>
         <div>
           <input
             type="text"

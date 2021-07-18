@@ -27,8 +27,8 @@ export default function Form() {
         title: '',
         summary: '',
         spoonacularScore: '',
-        healthScore:'',
-        step2step:'', 
+        healthScore: '',
+        step2step: '',
         typeDiets: []
     });
     // input = {title: '', summary: ''}
@@ -51,8 +51,27 @@ export default function Form() {
 
     };
 
+    const onSubmit = async function (e) {
+        e.preventDefault();
+        try {
+            let config = {
+                method: "POST",
+                headers: {
+                    "Accept": "Application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(input)
+            }
+            let res = await fetch("http://localhost:3001/recipe", config)
+            let json = await res.json()
+            console.log(json)
+        } catch (error) {
+
+        }
+    }
+
     return (
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={(e) =>onSubmit(e)}>
             <div>
                 <label>Title:</label>
                 <input type="text" name="title" className={errors.title && 'danger'}
@@ -85,7 +104,7 @@ export default function Form() {
             </div>
             <div>
                 <label>Steps:</label>
-                <textarea name="steps" className={errors.summary && 'danger'}
+                <textarea name="step2step" className={errors.summary && 'danger'}
                     onChange={handleInputChange} value={input.step2step} rows="10" cols="50" />
             </div>
             <input type="submit" value="Add Recipe" />
