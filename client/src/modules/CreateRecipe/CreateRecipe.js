@@ -1,4 +1,7 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { getTypes } from '../../store/actions/RecipesActions';
+import { connect } from 'react-redux';
 
 // export function validate(input) {
 //     let errors = {};
@@ -19,7 +22,15 @@ import React from 'react';
 //     return errors; // esto es un objeto que puede tener title y/o summary
 // };
 
-export default function Form() {
+function Form(props) {
+    function getTypesFunction() {
+        props.getTypes()
+    }
+    useEffect(() => {
+        getTypesFunction()
+    }, [])
+
+
 
     // utilizar React.useState para que pasen los tests con useState solo puede
     // que no pase
@@ -51,6 +62,12 @@ export default function Form() {
 
     };
 
+    function handleSelect(e) {
+			setInput((prev) => ({ ...prev,  typeDiets: [...prev.typeDiets, e.target.value] }));
+		}
+	
+
+
     const onSubmit = async function (e) {
         e.preventDefault();
         try {
@@ -66,12 +83,12 @@ export default function Form() {
             let json = await res.json()
             console.log(json)
         } catch (error) {
-
+            console.log(error)
         }
     }
 
     return (
-        <form onSubmit={(e) =>onSubmit(e)}>
+        <form onSubmit={(e) => onSubmit(e)}>
             <div>
                 <label>Title:</label>
                 <input type="text" name="title" className={errors.title && 'danger'}
@@ -107,7 +124,24 @@ export default function Form() {
                 <textarea name="step2step" className={errors.summary && 'danger'}
                     onChange={handleInputChange} value={input.step2step} rows="10" cols="50" />
             </div>
+
+
+
+            {props.typeDiets.map((e) => (
+                <li>
+                    <input key={e.id} onChange={handleSelect} type="checkbox" value={e.name} /> {e.name}
+                </li>
+            ))}
             <input type="submit" value="Add Recipe" />
         </form>
     )
 }
+
+const mapStateToProps = state => {
+    return {
+        typeDiets: state.typeDiets
+    }
+}
+
+
+export default connect(mapStateToProps, { getTypes })(Form)
