@@ -28,7 +28,7 @@ const { Sequelize } = require("sequelize")
 // };
 
 function addRecipe(req, res, next) {
-  const { title, summary, spoonacularScore, healthScore, step2step, typeDiets } = req.body;
+  const { title, summary, spoonacularScore, healthScore, step2step, typeDiets, image } = req.body;
   if (!title || !summary) return res.send({ error: 500, message: "Necesitas ponerle minimo un name y un summary en el body reina" });
   Recipe.create({
     id: uuidv4(),
@@ -37,7 +37,7 @@ function addRecipe(req, res, next) {
     spoonacularScore: spoonacularScore,
     healthScore: healthScore,
     step2step: step2step,
-    image: "https://i.pinimg.com/originals/57/11/ff/5711ff78c1e72030bcc46bf63f068f68.jpg"
+    image: image || "https://i.pinimg.com/originals/57/11/ff/5711ff78c1e72030bcc46bf63f068f68.jpg"
   })
     .then((recipeCreated) => {
       return recipeCreated.addTypeDiets(typeDiets);

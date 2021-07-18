@@ -40,7 +40,8 @@ function Form(props) {
         spoonacularScore: '',
         healthScore: '',
         step2step: '',
-        typeDiets: []
+        typeDiets: [], 
+        image: ''
     });
     // input = {title: '', summary: ''}
     const [errors, setErrors] = React.useState({});
@@ -63,9 +64,17 @@ function Form(props) {
     };
 
     function handleSelect(e) {
-			setInput((prev) => ({ ...prev,  typeDiets: [...prev.typeDiets, e.target.value] }));
-		}
-	
+        if (e.target.checked) {
+            setInput((prev) => ({ ...prev, typeDiets: [...prev.typeDiets, e.target.value] }));
+        } else {
+            setInput((prev) => ({ ...prev, typeDiets: [...prev.typeDiets].filter((typeDiet) => e.target.value !== typeDiet) }));
+        }
+    };
+
+
+
+
+
 
 
     const onSubmit = async function (e) {
@@ -90,9 +99,9 @@ function Form(props) {
     return (
         <form onSubmit={(e) => onSubmit(e)}>
             <div>
-                <label>Title:</label>
+                <label>Title * </label>
                 <input type="text" name="title" className={errors.title && 'danger'}
-                    onChange={handleInputChange} value={input.title} />
+                    onChange={handleInputChange} value={input.title} required="required" />
                 {/* {
                     errors.title && (
                         <p className='danger'>{errors.title}</p>
@@ -100,9 +109,9 @@ function Form(props) {
               } */}
             </div>
             <div>
-                <label>Summary:</label>
+                <label>Summary * </label>
                 <textarea name="summary" className={errors.summary && 'danger'}
-                    onChange={handleInputChange} value={input.summary} rows="10" cols="50" />
+                    onChange={handleInputChange} value={input.summary} rows="10" cols="50" required="required" />
                 {/* {
                   errors.summary && (
                       <p className='danger'>{errors.summary}</p>
@@ -110,28 +119,32 @@ function Form(props) {
               } */}
             </div>
             <div>
-                <label>Score:</label>
+                <label>Score </label>
                 <input type="number" name="spoonacularScore" min="0" max="100"
                     onChange={handleInputChange} value={input.spoonacularScore} />
             </div>
             <div>
-                <label>Health Score:</label>
+                <label>Health Score </label>
                 <input type="number" name="healthScore" min="0" max="100"
                     onChange={handleInputChange} value={input.healthScore} />
             </div>
             <div>
-                <label>Steps:</label>
+                <label>Steps </label>
                 <textarea name="step2step" className={errors.summary && 'danger'}
                     onChange={handleInputChange} value={input.step2step} rows="10" cols="50" />
             </div>
-
-
-
-            {props.typeDiets.map((e) => (
-                <li>
-                    <input key={e.id} onChange={handleSelect} type="checkbox" value={e.name} /> {e.name}
-                </li>
-            ))}
+            <div>
+                <label>Select the type diets:</label>
+                {props.typeDiets.map((e) => (
+                    <div>
+                        <input key={e.id} onChange={handleSelect} type="checkbox" value={e.id} /> {e.name}
+                    </div>
+                ))}</div>
+            <div>
+                <label>Image: </label>
+                <input type="url" name="image" className={errors.summary && 'danger'}
+                    onChange={handleInputChange} value={input.image}/>
+            </div>
             <input type="submit" value="Add Recipe" />
         </form>
     )
