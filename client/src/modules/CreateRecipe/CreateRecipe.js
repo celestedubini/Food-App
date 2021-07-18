@@ -39,7 +39,7 @@ function Form(props) {
         summary: '',
         spoonacularScore: '',
         healthScore: '',
-        step2step: '',
+        instructions: '',
         typeDiets: [], 
         image: ''
     });
@@ -130,8 +130,8 @@ function Form(props) {
             </div>
             <div>
                 <label>Steps </label>
-                <textarea name="step2step" className={errors.summary && 'danger'}
-                    onChange={handleInputChange} value={input.step2step} rows="10" cols="50" />
+                <textarea name="instructions" className={errors.summary && 'danger'}
+                    onChange={handleInputChange} value={input.instructions} rows="10" cols="50" />
             </div>
             <div>
                 <label>Select the type diets:</label>

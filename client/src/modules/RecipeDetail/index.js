@@ -25,11 +25,11 @@ class RecipeDetail extends React.Component {
                             </h2>
                         </div>
                         <img src={this.props.recipeId.image} alt={"img"} />
-                        <p>Types of Diet: {this.props.recipeId.diets? this.props.recipeId.diets.map(diet => diet).join(", ") : this.props.recipeId.typeDiets.map(diet => diet.name).join(", ")}</p>
-                        <p>Summary: {this.props.recipeId.summary}</p>
+                        {/* <p>Types of Diet: {this.props.recipeId.diets? this.props.recipeId.diets.map(diet => diet).join(", ") : this.props.recipeId.typeDiets.map(diet => diet.name).join(", ")}</p> */}
+                        <p>Summary: <div dangerouslySetInnerHTML={{__html: this.props.recipeId.summary}}></div></p>
                         <p>Score: {this.props.recipeId.spoonacularScore}</p>
                         <p>Health Score: {this.props.recipeId.healthScore}</p>
-                        <p>Steps: {this.props.recipeId.step2step}</p>
+                        <p>Steps: <div dangerouslySetInnerHTML={{__html: this.props.recipeId.instructions}}></div></p>
                     </div>
                     : <h1>Loading ...</h1>
                 }
