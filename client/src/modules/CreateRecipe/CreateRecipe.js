@@ -40,7 +40,7 @@ function Form(props) {
         spoonacularScore: '',
         healthScore: '',
         instructions: '',
-        typeDiets: [],
+        diets: [],
         image: ''
     });
     // input = {title: '', summary: ''}
@@ -65,9 +65,9 @@ function Form(props) {
 
     function handleSelect(e) {
         if (e.target.checked) {
-            setInput((prev) => ({ ...prev, typeDiets: [...prev.typeDiets, e.target.value] }));
+            setInput((prev) => ({ ...prev, diets: [...prev.diets, e.target.value] }));
         } else {
-            setInput((prev) => ({ ...prev, typeDiets: [...prev.typeDiets].filter((typeDiet) => e.target.value !== typeDiet) }));
+            setInput((prev) => ({ ...prev, diets: [...prev.diets].filter((typeDiet) => e.target.value !== typeDiet) }));
         }
     };
 
@@ -131,7 +131,7 @@ function Form(props) {
                 </div>
                 <div>
                     <label>Select the type diets:</label>
-                    {props.typeDiets.map((e) => (
+                    {props.diets.map((e) => (
                         <div key={e.id}>
                             <input onChange={handleSelect} type="checkbox" value={e.id} /> {e.name}
                         </div>
@@ -149,7 +149,7 @@ function Form(props) {
 
 const mapStateToProps = state => {
     return {
-        typeDiets: state.typeDiets
+        diets: state.diets
     }
 }
 
