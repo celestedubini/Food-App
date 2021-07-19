@@ -8,15 +8,16 @@ import { NavLink } from 'react-router-dom';
 import Filter from '../Filter/Filter';
 
 const renderData = (recipes) => {
-    return (<div>
-        {recipes.map((recipe) => {
-            return <div key={recipe.id}>
+    return (<div className="contenedor2">
+        {recipes.length!==0?
+        recipes.map((recipe) => {
+            return <div key={recipe.id} className="card">
                 <NavLink to={`/home/${recipe.id}`}>
-                <p>{recipe.title}</p>
+                <p className="recipeName">{recipe.title}</p>
                 <img src={recipe.image} alt="Foto de la receta" className="Foto"></img></NavLink>
                 <p>Types of Diet: {typeof recipe.diets[0] === "object"? recipe.diets.map(diet => Object.values(diet)).join(", ") : recipe.diets.map(diet => diet).join(", ")}</p>
             </div>
-        })}</div>)}
+        }):"No recipes available!"}</div>)}
 
     function PaginationComponent({ recipes, getRecipes }) {
         function getRecipesFunction() {
@@ -92,8 +93,8 @@ const renderData = (recipes) => {
         }
 
         return (
-            <><Filter/>
-                <h1>Henry Food</h1> <br />
+            <div><Filter/>
+                <h1 className="title">All Recipes</h1> <br />
                 {renderData(currentItems)}
                 <ul className="pageNumbers">
                     <li>
@@ -117,7 +118,7 @@ const renderData = (recipes) => {
                         </button>
                     </li>
                 </ul>
-            </>
+            </div>
         );
     }
 

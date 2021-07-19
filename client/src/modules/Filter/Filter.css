@@ -1,0 +1,7 @@
+.filter{
+    background: #131217;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: row;
+    border: white solid;
+}

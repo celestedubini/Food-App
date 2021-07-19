@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+.detail{
+   color: white;
+   border: white solid;
+}
+
+.nombre{
+    font: normal normal normal 60px/86px MADE Sunflower;
+letter-spacing: 0px;
+color: #FFC400;
+opacity: 1;
+}
+
+.texto{
+    font: normal normal 300 20px/30px Montserrat;
+    color: #FFFFFF;
+    width: 1500px;
+}
+
+.fotito{
+    display: block;
+  max-width:558px;
+  max-height:463px;
+  width: auto;
+  height: auto;
+    border-radius: 54px;
+}

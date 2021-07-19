@@ -1,4 +1,4 @@
-  
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 .pageNumbers {
     list-style: none;
     display: flex;
@@ -6,25 +6,25 @@
   
   .pageNumbers li {
     padding: 10px;
-    border: 1px solid black;
+    border: 1px solid white;
     cursor: pointer;
   }
   
   .pageNumbers li.active {
     background-color: grey;
-    color: black;
+    color: white;
   }
   
   .pageNumbers li button {
     background-color: transparent;
     border: none;
-    color: black;
+    color: white;
     font-size: 1.5rem;
     cursor: pointer;
   }
   .pageNumbers li button:hover {
     background-color: grey;
-    color: black;
+    color: white;
   }
   .pageNumbers li button:focus {
     outline: none;
@@ -33,9 +33,44 @@
   .Foto{
     top: 471px;
     left: 60px;
-    width: 558px;
-    height: 463px;
+    width: 312px;
+    height: 231px;
     background: 0% 0% no-repeat padding-box;
     border-radius: 54px;
     opacity: 1;
   }
+
+  .contenedor2{
+    flex-direction:row;
+    flex-wrap: wrap;
+  justify-content: space-evenly;
+    display:flex;
+    align-items: center;
+    color: white;
+}
+
+.card{
+  color: white;
+  text-align: center;
+  border: white solid;
+}
+
+.title{
+  top: 326px;
+left: 46px;
+width: 630px;
+height: 84px;
+text-align: center;
+font: normal normal normal 40px/86px MADE Sunflower;
+letter-spacing: 0px;
+color: #FFC400;
+opacity: 1;
+}
+
+.recipeName{
+  text-align: center;
+font: normal normal 300 30px/61px Montserrat;
+letter-spacing: 0px;
+color: #FFFFFF;
+opacity: 1;
+}

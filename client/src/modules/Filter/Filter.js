@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import {getOrder, getOrderByScore} from "../../store/actions/RecipesActions"
+import "./Filter.css"
 
 function Filter() {
     const dispatch = useDispatch();
@@ -14,7 +15,7 @@ function Filter() {
 	}
 
     return (
-        <div>
+        <div className="filter">
             <form>
 				<p>Order by Score</p>
 				<select onChange={handleOrderByScore}>

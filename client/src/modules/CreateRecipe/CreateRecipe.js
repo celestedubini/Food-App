@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { getTypes } from '../../store/actions/RecipesActions';
 import { connect } from 'react-redux';
+import "./CreateRecipe.css"
 
 // export function validate(input) {
 //     let errors = {};
@@ -92,8 +93,8 @@ function Form(props) {
 
     return (
         <div>
-            <h1>Create a Recipe</h1>
-            <form onSubmit={(e) => onSubmit(e)}>
+            <h1 className="create">Create a Recipe</h1>
+            <form onSubmit={(e) => onSubmit(e)} className="formulario">
                 <div>
                     <label>Title * </label>
                     <input type="text" name="title" className={errors.title && 'danger'}
@@ -131,11 +132,11 @@ function Form(props) {
                 </div>
                 <div>
                     <label>Select the type diets:</label>
-                    {props.diets.map((e) => (
+                    {props.diets.length !==0? props.diets.map((e) => (
                         <div key={e.id}>
                             <input onChange={handleSelect} type="checkbox" value={e.id} /> {e.name}
                         </div>
-                    ))}</div>
+                    )):" Loading"}</div>
                 <div>
                     <label>Image </label>
                     <input type="url" name="image" className={errors.summary && 'danger'}

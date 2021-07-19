@@ -10,11 +10,12 @@ function Nav({onSearch}) {
     <nav className="nav">
       <NavLink to='/home'>
         <span className="titulo">
-          Home
+          <div className="henryTitle">Henry</div>
+          <div className="foodTitle">Food</div>
         </span>
       </NavLink>
-      <NavLink to='/recipe'>
-        <span className="titulo">
+      <NavLink to='/recipe' activeClassName="activeCreacion">
+        <span className="creacion">
           Create Recipe
         </span>
       </NavLink>
