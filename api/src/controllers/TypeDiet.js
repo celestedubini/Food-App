@@ -1,4 +1,4 @@
-const {TypeDiet} = require("../db")
+const {Diets} = require("../db")
 
 let dietId = 0
 
@@ -48,12 +48,12 @@ let diets = [
 
 //Hacerlo con Find or Create
 function getDiets(req, res, next) {
-	TypeDiet.findAll()
+	Diets.findAll()
 		.then((response) => {
 			if (response.length>0) {
 				return res.json(response).status(200);
 			} else {
-				TypeDiet.bulkCreate(diets)
+				Diets.bulkCreate(diets)
 					.then((response) => {
 						return res.json(response);
 					})
