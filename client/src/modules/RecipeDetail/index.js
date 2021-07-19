@@ -14,10 +14,10 @@ class RecipeDetail extends React.Component {
         this.props.getDetail(this.props.match.params.id)
     }
 
-    render() {console.log(this.props.recipeId.typeDiets);
+    render() {console.log(this.props.recipeId);
         return (
             <div>
-                {this.props.recipeId ?
+                {this.props.recipeId.length!==0 ?
                     <div>
                         <div>
                             <h2>
@@ -25,7 +25,7 @@ class RecipeDetail extends React.Component {
                             </h2>
                         </div>
                         <img src={this.props.recipeId.image} alt={"img"} />
-                        {/* <p>Types of Diet: {this.props.recipeId.diets? this.props.recipeId.diets.map(diet => diet).join(", ") : this.props.recipeId.typeDiets.map(diet => diet.name).join(", ")}</p> */}
+                        <p>Types of Diet: {this.props.recipeId.diets? this.props.recipeId.diets.map(diet => diet).join(", ") : this.props.recipeId.typeDiets.map(diet => diet.name).join(", ")}</p>
                         <p>Summary: <div dangerouslySetInnerHTML={{__html: this.props.recipeId.summary}}></div></p>
                         <p>Score: {this.props.recipeId.spoonacularScore}</p>
                         <p>Health Score: {this.props.recipeId.healthScore}</p>

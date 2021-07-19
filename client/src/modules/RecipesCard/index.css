@@ -29,3 +29,13 @@
   .pageNumbers li button:focus {
     outline: none;
   }
+
+  .Foto{
+    top: 471px;
+    left: 60px;
+    width: 558px;
+    height: 463px;
+    background: 0% 0% no-repeat padding-box;
+    border-radius: 54px;
+    opacity: 1;
+  }

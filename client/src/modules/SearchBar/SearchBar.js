@@ -14,7 +14,7 @@ function SearchBar(props) {
         setName("")
       }
     return (
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={(e) => handleSubmit(e)} className="Busqueda">
         <div>
           <input
             type="text"
@@ -23,6 +23,7 @@ function SearchBar(props) {
             autoComplete="off"
             value={name}
             onChange={(e) => handleChange(e)}
+            
           />
         </div>
         <button type="submit">Search</button>

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getRecipes } from '../../store/actions/RecipesActions';
 import "./index.css";
 import { NavLink } from 'react-router-dom';
+import Filter from '../Filter/Filter';
 
 const renderData = (recipes) => {
     return (<div>
@@ -12,7 +13,7 @@ const renderData = (recipes) => {
             return <div key={recipe.id}>
                 <NavLink to={`/home/${recipe.id}`}>
                 <p>{recipe.title}</p>
-                <img src={recipe.image} alt="Foto de la receta"></img></NavLink>
+                <img src={recipe.image} alt="Foto de la receta" className="Foto"></img></NavLink>
                 <p>Types of Diet: {recipe.diets? recipe.diets.map(diet => diet).join(", "): recipe.typeDiets.map(diet => diet.name).join(", ")}</p>
             </div>
         })}</div>)}
@@ -91,7 +92,7 @@ const renderData = (recipes) => {
         }
 
         return (
-            <>
+            <><Filter/>
                 <h1>Henry Food</h1> <br />
                 {renderData(currentItems)}
                 <ul className="pageNumbers">

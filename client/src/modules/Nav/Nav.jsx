@@ -3,7 +3,6 @@ import React from 'react';
 import './Nav.css';
 import { NavLink } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
-import Filter from '../Filter/Filter';
 
 
 function Nav({onSearch}) {
@@ -19,9 +18,9 @@ function Nav({onSearch}) {
           Create Recipe
         </span>
       </NavLink>
-        <SearchBar
+      <SearchBar
         />
-        <Filter/>
+        
     </nav>
   );
 };

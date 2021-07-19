@@ -37,12 +37,12 @@ const reducer = (state = INITIAL_STATE, action) => {
         case MINMAX:
             return {
                 ...state,
-                recipes: state.recipes.filter((b) => b.spoonacularScore !== null).sort((a, b) => (a.spoonacularScore < b.spoonacularScore ? 1 : -1)),
+                recipes: state.recipes.filter((b) => b.spoonacularScore !== null).sort((a, b) => (a.spoonacularScore > b.spoonacularScore ? 1 : -1)),
             };
         case MAXMIN:
             return {
                 ...state,
-                recipes: state.recipes.filter((b) => b.spoonacularScore !== null).sort((a, b) => (a.spoonacularScore > b.spoonacularScore ? 1 : -1)),
+                recipes: state.recipes.filter((b) => b.spoonacularScore !== null).sort((a, b) => (a.spoonacularScore < b.spoonacularScore ? 1 : -1)),
             };
         default:
             return { ...state };
@@ -50,3 +50,10 @@ const reducer = (state = INITIAL_STATE, action) => {
 }
 
 export default reducer;
+
+
+
+
+
+
+

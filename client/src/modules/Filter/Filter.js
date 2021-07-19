@@ -19,16 +19,16 @@ function Filter() {
 				<p>Order by Score</p>
 				<select onChange={handleOrderByScore}>
 					<option value=''>Select</option>
-					<option value='MINMAX'>+ to -</option>
-					<option value='MAXMIN'>- to +</option>
+					<option value='MAXMIN'>Higher</option> 
+					<option value='MINMAX'>Lower</option>
 				</select>
 			</form>
             <form>
                 <p>Order alphabetically</p>
                 <select onChange={handleOrder}>
                     <option value=''>Select</option>
-                    <option value='ASC'>A-Z</option>
-                    <option value='DESC'>Z-A</option>
+                    <option value='ASC'>Ascendant</option>
+                    <option value='DESC'>Descendant</option>
                 </select>
             </form>
         </div>
