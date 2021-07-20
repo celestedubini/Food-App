@@ -59,7 +59,7 @@
 }
 
 .titleAll{
-  top: 326px;
+ top: 326px;
 left: 46px;
 width: 630px;
 height: 84px;
@@ -67,7 +67,7 @@ text-align: center;
 font: normal normal normal 35px/86px Yeseva One;
 letter-spacing: 0px;
 color: #FFC400;
-opacity: 1;
+opacity: 1; 
 }
 
 .recipeName{

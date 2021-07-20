@@ -12,7 +12,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route>
-          <Nav path="/home" component={Nav} />
+          <Nav path="/" component={Nav} />
           <Route exact path="/home" component={PaginationComponent} />
           <Route path="/home/:id" component={RecipeDetail} />
           <Route path="/recipe" component={CreateRecipe} />

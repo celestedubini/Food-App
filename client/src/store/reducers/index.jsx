@@ -59,16 +59,16 @@ const reducer = (state = INITIAL_STATE, action) => {
                 recipes: state.recipes.filter((b) => b.spoonacularScore !== null).sort((a, b) => (a.spoonacularScore < b.spoonacularScore ? 1 : -1)),
             };
 
-// const aux = (recipes, types) => {
-//                 console.log(types)
-                // let recipesFilter = [];
-                // if (types === "All") {
-                //     return recipesFilter;
-                // } else {
-                //     recipesFilter = recipes.filter(e => e.diets?.map(e => e.name.toLowerCase()).includes(types))
-                // }
-                // return recipesFilter
-            // }
+        // const aux = (recipes, types) => {
+        //                 console.log(types)
+        // let recipesFilter = [];
+        // if (types === "All") {
+        //     return recipesFilter;
+        // } else {
+        //     recipesFilter = recipes.filter(e => e.diets?.map(e => e.name.toLowerCase()).includes(types))
+        // }
+        // return recipesFilter
+        // }
 
 
 
@@ -80,15 +80,23 @@ const reducer = (state = INITIAL_STATE, action) => {
                     recipes: state.recipesFiltered
                 }
             };
-            let recipesFilter = [];
-            recipesFilter = state.recipes.filter(e => e.diets?.map(e => e.name.toLowerCase()).includes(action.payload))
+            // let recipesFilter = [];
+            // recipesFilter = state.recipes.filter(e => e.diets?.map(e => e.name.toLowerCase()).includes(action.payload))
+            const recipesFilter = state.recipes.filter(e => {
+
+                for (let i = 0; i < e.diets.length; i++) {
+                    if (e.diets[i].name === action.payload) {
+                        return true
+                    }
+                }
+                return false
+            });
             console.log(recipesFilter)
             return {
                 ...state, recipes: recipesFilter
 
             }
 
-            
 
 
 
