@@ -51,7 +51,7 @@ function Filter(props) {
             <form>
                 <p>Filter by Type Diets</p>
                 <select onChange={handleFilter}>
-                <option>All</option>
+                <option value='All'>All</option>
                 {props.diets.length !== 0 ? props.diets.map((e) => (
                     <option key={e.id} value={e.name} > {e.name} </option>
             )) : <option>Loading</option>}</select>
