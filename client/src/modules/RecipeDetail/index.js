@@ -31,7 +31,7 @@ class RecipeDetail extends React.Component {
                             <p>Summary: </p><div dangerouslySetInnerHTML={{ __html: this.props.recipeId.summary }}></div>
                             <p>Score: {this.props.recipeId.spoonacularScore}</p>
                             <p>Health Score: {this.props.recipeId.healthScore}</p>
-                            <p>Steps: </p><div dangerouslySetInnerHTML={{ __html: this.props.recipeId.instructions ? this.props.recipeId.instructions : "Not available" }} />
+                            <p>Steps: {this.props.recipeId.analyzedInstructions[0] ? this.props.recipeId.analyzedInstructions[0].steps.map(e=>e.step?e.step:"Not available").join(" ") : "Not available" }</p>
                         </div>
                     </div>
                     : <h1>Loading ...</h1>

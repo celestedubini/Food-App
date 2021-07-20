@@ -8,14 +8,17 @@ const INITIAL_STATE = {
 };
 
 function aux(recipes, types) {
+    console.log(types)
     let recipesFilter = [];
     if (types === "All Types") {
         return recipes;
     } else {
-        recipesFilter = recipes.filter(e => e.diets ? e.diets.includes(types) : recipes.filter(e => e.diets && e.diets.map(e => e.name === types)))
+        recipesFilter = recipes.filter(e => e.diets?.map(e=>e.name.toLowerCase()).includes(types))
     }
     return recipesFilter
 }
+
+//breeds.filter( e =>e.temperaments && e.temperaments.map(e => e.name === temperament)))
 
 // function filterTemperament(breeds, temperament) {
 //     let filteredBreeds = []

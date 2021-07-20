@@ -27,7 +27,7 @@ function Filter(props) {
 
     function handleFilter(e) {
         setFilterDiets(e.target.value)
-        dispatch(filterByDiet(e.target.value))
+        dispatch(filterByDiet(e.target.value.toLowerCase()))
     }
 
     return (
