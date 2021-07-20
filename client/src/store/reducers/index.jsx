@@ -18,21 +18,6 @@ function aux(recipes, types) {
     return recipesFilter
 }
 
-//breeds.filter( e =>e.temperaments && e.temperaments.map(e => e.name === temperament)))
-
-// function filterTemperament(breeds, temperament) {
-//     let filteredBreeds = []
-
-//     if (temperament === 'All Temperaments') return breeds
-//     else {
-//         filteredBreeds = breeds.filter(e => e.temperament ? e.temperament.includes(temperament)
-//             : breeds.filter(e => e.temperaments && e.temperaments.map(e => e.name === temperament)))
-//         // if (typeof temperament === 'string') temperament.split(,)
-//     }
-//     return filteredBreeds
-
-// }
-
 const reducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case GET_RECIPES:
