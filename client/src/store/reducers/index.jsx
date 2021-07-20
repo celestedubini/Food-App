@@ -1,10 +1,34 @@
-import { GET_RECIPES, GET_RECIPES_BY_NAME, GET_RECIPE_DETAIL, GET_TYPES, ASC, DESC, MINMAX, MAXMIN } from "../actions/RecipesActions";
+import { GET_RECIPES, GET_RECIPES_BY_NAME, GET_RECIPE_DETAIL, GET_TYPES, ASC, DESC, MINMAX, MAXMIN, FILTER_BY_DIET } from "../actions/RecipesActions";
 
 const INITIAL_STATE = {
     recipes: [],
     recipeDetail: [],
-    diets: []
+    diets: [],
+    recipesFiltered: []
 };
+
+function aux(recipes, types) {
+    let recipesFilter = [];
+    if (types === "All Types") {
+        return recipes;
+    } else {
+        recipesFilter = recipes.filter(e => e.diets ? e.diets.includes(types) : recipes.filter(e => e.diets && e.diets.map(e => e.name === types)))
+    }
+    return recipesFilter
+}
+
+// function filterTemperament(breeds, temperament) {
+//     let filteredBreeds = []
+
+//     if (temperament === 'All Temperaments') return breeds
+//     else {
+//         filteredBreeds = breeds.filter(e => e.temperament ? e.temperament.includes(temperament)
+//             : breeds.filter(e => e.temperaments && e.temperaments.map(e => e.name === temperament)))
+//         // if (typeof temperament === 'string') temperament.split(,)
+//     }
+//     return filteredBreeds
+
+// }
 
 const reducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -44,6 +68,11 @@ const reducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 recipes: state.recipes.filter((b) => b.spoonacularScore !== null).sort((a, b) => (a.spoonacularScore < b.spoonacularScore ? 1 : -1)),
             };
+        case FILTER_BY_DIET:
+            return {
+                ...state, recipesFiltered: aux(state.recipes, action.payload)
+
+            }
         default:
             return { ...state };
     }

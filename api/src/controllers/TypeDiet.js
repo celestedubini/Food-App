@@ -4,7 +4,7 @@ let dietId = 0
 
 let diets = [
 	{
-		name: 'Gluten Free',
+		name: 'gluten free',
         id: ++dietId
 	},
 	{

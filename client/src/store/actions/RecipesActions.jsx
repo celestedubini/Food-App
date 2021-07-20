@@ -6,7 +6,8 @@ export const GET_TYPES = "GET_TYPES";
 export const ASC = 'ASC';
 export const DESC = 'DESC';
 export const MINMAX = "MINMAX";
-export const MAXMIN = "MAXMIN"
+export const MAXMIN = "MAXMIN";
+export const FILTER_BY_DIET ="FILTER_BY_DIET"
 
 export function getRecipes() {
     return function (dispatch) {
@@ -53,25 +54,32 @@ export function getTypes() {
 }
 
 export function getOrder(value) {
-	if (value === 'ASC') {
-		return {
-			type: 'ASC',
-		};
-	} else {
-		return {
-			type: 'DESC',
-		};
-	}
+    if (value === ASC) {
+        return {
+            type: ASC,
+        };
+    } else {
+        return {
+            type: DESC,
+        };
+    }
 }
 
 export function getOrderByScore(value) {
-	if (value === 'MINMAX') {
-		return {
-			type: 'MINMAX',
-		};
-	} else {
-		return {
-			type: 'MAXMIN',
-		};
-	}
+    if (value === MINMAX) {
+        return {
+            type: MINMAX,
+        };
+    } else {
+        return {
+            type: MAXMIN,
+        };
+    }
+}
+
+export function filterByDiet(diets) {
+    return {
+        type: FILTER_BY_DIET,
+        payload: diets
+    }
 }

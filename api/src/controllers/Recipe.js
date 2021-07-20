@@ -6,27 +6,6 @@ const { YOUR_API_KEY } = process.env;
 const axios = require('axios');
 const { Sequelize } = require("sequelize")
 
-
-// const infoApi = async () => {
-//   const allApiInfo = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${YOUR_API_KEY}&number=100`);
-
-//   const infoNeeded = await allApiInfo.data.results.map((recipe) => {
-//     return {
-//       name: recipe.title,
-//       types: recipe.diets.map((diet) => { return { title: diet } }),
-//       healthScore: recipe.healthScore,
-//       summary: recipe.summary,
-//       image: recipe.image,
-//       id: recipe.id,
-//       score: parseInt(recipe.spoonacularScore),
-//       step2step: recipe.analyzedInstructions
-//     };
-//   });
-
-//   return infoNeeded;
-
-// };
-
 function addRecipe(req, res, next) {
   const { title, summary, spoonacularScore, healthScore, instructions, diets, image } = req.body;
   if (!title || !summary) return res.send({ error: 500, message: "Necesitas ponerle minimo un name y un summary en el body reina" });
@@ -53,27 +32,52 @@ function addRecipe(req, res, next) {
 async function getAllRecipes(req, res, next) {
   const q = req.query.name;
   if (!q) {
-    const recipeApi = axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${YOUR_API_KEY}&number=100`);
-    const recipeDB = Recipe.findAll({include: {
-      model: Diets,
-      attributes: ["name"],
-      through: {
-        attributes: []
+    const recipeApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${YOUR_API_KEY}&number=100`);
+    const infoNeededApi = await recipeApi.data.results.map((recipe) => {
+      return {
+        title: recipe.title,
+        diets: recipe.diets.map((diet) => { return { name: diet } }),
+        healthScore: recipe.healthScore,
+        summary: recipe.summary,
+        image: recipe.image,
+        id: recipe.id,
+        spoonacularScore: parseInt(recipe.spoonacularScore),
+        instructions: recipe.analyzedInstructions
+      };
+    });
+    const recipeDB = Recipe.findAll({
+      include: {
+        model: Diets,
+        attributes: ["name"],
+        through: {
+          attributes: []
+        }
       }
-    }
-  });
-    Promise.all([recipeApi, recipeDB])
+    });
+    Promise.all([infoNeededApi, recipeDB])
       .then((respuesta) => {
         let [recipeApiRes, recipeDBres] = respuesta;
         return res.send(
-          recipeDBres.concat(recipeApiRes.data.results)
+          recipeDBres.concat(recipeApiRes)
         );
       })
       .catch((err) => next(err));
   } else {
-    const query=q.toLowerCase();
+    const query = q.toLowerCase();
     const recipeApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${YOUR_API_KEY}&number=100`);
-    const filteredRecipeApi = await recipeApi.data.results.filter(recipe => recipe.title.toLowerCase().includes(query))
+    const infoNeededApi2 = await recipeApi.data.results.map((recipe) => {
+      return {
+        title: recipe.title,
+        diets: recipe.diets.map((diet) => { return { name: diet } }),
+        healthScore: recipe.healthScore,
+        summary: recipe.summary,
+        image: recipe.image,
+        id: recipe.id,
+        spoonacularScore: parseInt(recipe.spoonacularScore),
+        instructions: recipe.analyzedInstructions
+      };
+    });
+    const filteredRecipeApi = await infoNeededApi2.filter(recipe => recipe.title.toLowerCase().includes(query))
     const recipeDB = Recipe.findAll({
       where: {
         title: {
@@ -105,13 +109,15 @@ async function getRecipeById(req, res) {
     res.json(response.data)
   } catch (error) {
     if (error.response?.status === 404) {
-      Recipe.findByPk(req.params.id, { include: {
-        model: Diets,
-        attributes: ["name"],
-        through: {
-          attributes: []
+      Recipe.findByPk(req.params.id, {
+        include: {
+          model: Diets,
+          attributes: ["name"],
+          through: {
+            attributes: []
+          }
         }
-      }}).then(recipe => {
+      }).then(recipe => {
         if (recipe) return res.json(recipe)
         return res.sendStatus(404)
       })

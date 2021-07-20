@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+
 .nav{
   display: flex;
   flex-direction: row;
@@ -9,10 +11,10 @@
 
 .titulo{
 display: flex;
-padding: 3px;
+/* padding: 3px; */
 align-items: center;
 font-weight:600;
-font-size: large;
+/* font-size: large; */
 flex-direction: column;
 background: #FFFFFF00 0% 0% no-repeat padding-box;
 border: 2px solid #FFFFFF;
@@ -27,7 +29,7 @@ height: 133px;
 }
 
 .henryTitle{
-  font: normal normal normal 60px/86px MADE Sunflower;
+  font: normal normal normal 60px/86px Yeseva One;
   color:white
 }
 
