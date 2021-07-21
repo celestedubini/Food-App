@@ -32,6 +32,7 @@ function addRecipe(req, res, next) {
 async function getAllRecipes(req, res, next) {
   const q = req.query.name;
   if (!q) {
+    try{
     const recipeApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${YOUR_API_KEY}&number=100`);
     const infoNeededApi = await recipeApi.data.results.map((recipe) => {
       return {
@@ -45,7 +46,7 @@ async function getAllRecipes(req, res, next) {
         instructions: recipe.analyzedInstructions
       };
     });
-    const recipeDB = Recipe.findAll({
+    const recipeDB = await Recipe.findAll({
       include: {
         model: Diets,
         attributes: ["name"],
@@ -60,10 +61,11 @@ async function getAllRecipes(req, res, next) {
         return res.send(
           recipeDBres.concat(recipeApiRes)
         );
-      })
-      .catch((err) => next(err));
+      })}
+      catch(err){(next(err));}
   } else {
     const query = q.toLowerCase();
+    try{
     const recipeApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${YOUR_API_KEY}&number=100`);
     const infoNeededApi2 = await recipeApi.data.results.map((recipe) => {
       return {
@@ -78,7 +80,7 @@ async function getAllRecipes(req, res, next) {
       };
     });
     const filteredRecipeApi = await infoNeededApi2.filter(recipe => recipe.title.toLowerCase().includes(query))
-    const recipeDB = Recipe.findAll({
+    const recipeDB = await Recipe.findAll({
       where: {
         title: {
           [Sequelize.Op.iLike]: `%${query}%` //%${} con esto se fija que en alguna parte de todo el string este eso
@@ -98,8 +100,8 @@ async function getAllRecipes(req, res, next) {
         return res.send(
           recipeDBres.concat(filteredRecipeApi)
         );
-      })
-      .catch((err) => next(err));
+      })}
+      catch(err){(next(err))}
   }
 }
 

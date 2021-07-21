@@ -35,7 +35,7 @@ function Filter(props) {
             <form>
                 <p>Order by Score</p>
                 <select onChange={handleOrderByScore}>
-                    <option value='Reset'>Select</option>
+                    <option value='Reset'>Unordered</option>
                     <option value='MAXMIN'>Higher</option>
                     <option value='MINMAX'>Lower</option>
                 </select>
@@ -43,7 +43,7 @@ function Filter(props) {
             <form>
                 <p>Order alphabetically</p>
                 <select onChange={handleOrder}>
-                    <option value='Reset'>Select</option>
+                    <option value='Reset'>Unordered</option>
                     <option value='ASC'>Ascendant</option>
                     <option value='DESC'>Descendant</option>
                 </select>

@@ -38,8 +38,8 @@ function Form(props) {
     const [input, setInput] = React.useState({
         title: '',
         summary: '',
-        spoonacularScore: '',
-        healthScore: '',
+        spoonacularScore: 0,
+        healthScore: 0,
         instructions: '',
         diets: [],
         image: ''
