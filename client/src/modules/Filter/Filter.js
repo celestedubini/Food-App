@@ -31,34 +31,35 @@ function Filter(props) {
     }
 
     return (
-        <div className="filter">
-            <form>
-                <p>Order by Score</p>
-                <select onChange={handleOrderByScore}>
-                    <option value='Reset'>Unordered</option>
-                    <option value='MAXMIN'>Higher</option>
-                    <option value='MINMAX'>Lower</option>
-                </select>
-            </form>
-            <form>
-                <p>Order alphabetically</p>
-                <select onChange={handleOrder}>
-                    <option value='Reset'>Unordered</option>
-                    <option value='ASC'>Ascendant</option>
-                    <option value='DESC'>Descendant</option>
-                </select>
-            </form>
-            <form>
-                <p>Filter by Type Diets</p>
-                <select onChange={handleFilter}>
-                <option value='All'>All</option>
-                {props.diets.length !== 0 ? props.diets.map((e) => (
-                    <option key={e.id} value={e.name} > {e.name} </option>
-            )) : <option>Loading</option>}</select>
-            </form>
+        <div>
+            <div className="filter">
+                <form className="espaciado">
+                    <p>Order by Score</p>
+                    <select onChange={handleOrderByScore} className="margen">
+                        <option value='Reset'>Unordered</option>
+                        <option value='MAXMIN'>Higher</option>
+                        <option value='MINMAX'>Lower</option>
+                    </select>
+                </form>
+                <form className="espaciado">
+                    <p>Order alphabetically</p>
+                    <select onChange={handleOrder} className="margen">
+                        <option value='Reset'>Unordered</option>
+                        <option value='ASC'>Ascendant</option>
+                        <option value='DESC'>Descendant</option>
+                    </select>
+                </form>
+                <form className="espaciado">
+                    <p>Filter by Type Diets</p>
+                    <select onChange={handleFilter}  className="margen">
+                        <option value='All'>All</option>
+                        {props.diets.length !== 0 ? props.diets.map((e) => (
+                            <option key={e.id} value={e.name} > {e.name} </option>
+                        )) : <option>Loading</option>}</select>
+                </form>
 
-            
 
+            </div>
 
 
         </div >

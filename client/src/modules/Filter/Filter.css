@@ -3,5 +3,15 @@
     color: #FFFFFF;
     display: flex;
     flex-direction: row;
-    border: white solid;
+    justify-content: center;
+}
+
+.espaciado{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 5px
+}
+
+.margen{
+    margin: 5px
 }

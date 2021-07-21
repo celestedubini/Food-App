@@ -3,6 +3,7 @@
 .pageNumbers {
     list-style: none;
     display: flex;
+    color: white
   }
   
   .pageNumbers li {
@@ -24,7 +25,7 @@
     cursor: pointer;
   }
   .pageNumbers li button:hover {
-    background-color: grey;
+    background-color: white;
     color: white;
   }
   .pageNumbers li button:focus {
