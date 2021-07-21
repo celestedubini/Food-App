@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect } from "react";
-import { BASE_URL, ALL_RECIPES } from "../../constants"
 import { connect } from 'react-redux';
 import { getRecipes } from '../../store/actions/RecipesActions';
 import "./index.css";

@@ -1,6 +1,5 @@
 require('dotenv').config();
 const { Recipe, Diets } = require("../db")
-//const { BASE_URL } = require("../../constants")
 const { v4: uuidv4 } = require('uuid');
 const { YOUR_API_KEY } = process.env;
 const axios = require('axios');
@@ -124,7 +123,7 @@ async function getRecipeById(req, res) {
         return res.sendStatus(404)
       })
     } else {
-      res.status(500).json({ error: "Ups!!! 😱" })
+      res.status(500).json({ error: "No pudimos acceder a la receta!" })
     }
   }
 }

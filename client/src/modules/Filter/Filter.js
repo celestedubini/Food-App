@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector, connect } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getOrder, getOrderByScore, filterByDiet, getTypes } from "../../store/actions/RecipesActions"
 import "./Filter.css"
