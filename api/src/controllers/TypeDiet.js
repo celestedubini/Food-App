@@ -28,11 +28,11 @@ let diets = [
         id: ++dietId
 	},
 	{
-		name: 'Pescetarian',
+		name: 'Pescatarian',
         id: ++dietId
 	},
 	{
-		name: 'Paleo',
+		name: 'Paleolithic',
         id: ++dietId
 	},
 	{

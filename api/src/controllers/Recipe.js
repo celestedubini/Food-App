@@ -16,7 +16,7 @@ function addRecipe(req, res, next) {
     spoonacularScore: spoonacularScore,
     healthScore: healthScore,
     instructions: instructions,
-    image: image || "https://i.pinimg.com/originals/57/11/ff/5711ff78c1e72030bcc46bf63f068f68.jpg"
+    image: image || "https://www.food4fuel.com/wp-content/uploads/woocommerce-placeholder-600x600.png"
   })
     .then((recipeCreated) => {
       return recipeCreated.addDiets(diets);

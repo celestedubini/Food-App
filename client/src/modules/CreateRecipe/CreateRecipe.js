@@ -86,8 +86,10 @@ function Form(props) {
             let res = await fetch("http://localhost:3001/recipe", config)
             let json = await res.json()
             console.log(json)
+            alert('Recipe created successfully!');
         } catch (error) {
             console.log(error)
+            alert('We could not create recipe. Please try again.');
         }
     }
 

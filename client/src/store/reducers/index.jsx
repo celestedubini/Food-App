@@ -85,7 +85,7 @@ const reducer = (state = INITIAL_STATE, action) => {
             const recipesFilter = state.recipes.filter(e => {
 
                 for (let i = 0; i < e.diets.length; i++) {
-                    if (e.diets[i].name === action.payload) {
+                    if (e.diets[i].name.toLowerCase() === action.payload) {
                         return true
                     }
                 }

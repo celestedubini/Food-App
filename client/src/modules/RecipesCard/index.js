@@ -27,7 +27,7 @@ function PaginationComponent({ recipes, getRecipes }) {
     useEffect(() => {
         getRecipesFunction()
     }, [])
-
+    
     const [render, setRender] = useState(recipes)
 
     const [currentPage, setcurrentPage] = useState(1);
