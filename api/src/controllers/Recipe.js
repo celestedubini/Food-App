@@ -23,7 +23,7 @@ function addRecipe(req, res, next) {
     })
     .then(newRecipe => {
       return res.json({
-        message: 'Creaste una Receta!',
+        message: "Creaste una Receta!",
       });
     })
     .catch((error) => next(error));
@@ -122,7 +122,7 @@ async function getRecipeById(req, res) {
         return res.sendStatus(404)
       })
     } else {
-      res.status(500).json({ error: 'Ups!!! 😱' })
+      res.status(500).json({ error: "Ups!!! 😱" })
     }
   }
 }

@@ -1,4 +1,4 @@
-import { GET_RECIPES, GET_RECIPES_BY_NAME, GET_RECIPE_DETAIL, GET_TYPES, ASC, DESC, MINMAX, MAXMIN, FILTER_BY_DIET } from "../actions/RecipesActions";
+import { GET_RECIPES, GET_RECIPES_BY_NAME, GET_RECIPE_DETAIL, GET_TYPES, ASC, DESC, MINMAX, MAXMIN, FILTER_BY_DIET, RESET } from "../actions/RecipesActions";
 
 const INITIAL_STATE = {
     recipes: [],
@@ -73,7 +73,6 @@ const reducer = (state = INITIAL_STATE, action) => {
 
 
         case FILTER_BY_DIET:
-            console.log(action.payload)
             if (action.payload === 'all') {
                 return {
                     ...state,
@@ -91,12 +90,15 @@ const reducer = (state = INITIAL_STATE, action) => {
                 }
                 return false
             });
-            console.log(recipesFilter)
             return {
                 ...state, recipes: recipesFilter
 
             }
-
+        case RESET:
+            return {
+                ...state,
+                recipes: state.recipesFiltered
+            };
 
 
 

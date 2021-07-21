@@ -7,7 +7,8 @@ export const ASC = 'ASC';
 export const DESC = 'DESC';
 export const MINMAX = "MINMAX";
 export const MAXMIN = "MAXMIN";
-export const FILTER_BY_DIET ="FILTER_BY_DIET"
+export const FILTER_BY_DIET = "FILTER_BY_DIET"
+export const RESET = "Reset"
 
 export function getRecipes() {
     return function (dispatch) {
@@ -54,6 +55,11 @@ export function getTypes() {
 }
 
 export function getOrder(value) {
+    if (value === RESET) {
+        return {
+            type: RESET,
+        }
+    }
     if (value === ASC) {
         return {
             type: ASC,
@@ -66,6 +72,12 @@ export function getOrder(value) {
 }
 
 export function getOrderByScore(value) {
+    console.log(value)
+    if (value === RESET) {
+        return {
+            type: RESET,
+        }
+    }
     if (value === MINMAX) {
         return {
             type: MINMAX,
