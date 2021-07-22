@@ -46,7 +46,6 @@ let diets = [
 ];
 
 
-//Hacerlo con Find or Create
 function getDiets(req, res, next) {
 	Diets.findAll()
 		.then((response) => {
