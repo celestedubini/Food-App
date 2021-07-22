@@ -67,7 +67,7 @@ function Filter(props) {
                             <option key={e.id} value={e.name} > {e.name} </option>
                         )) : <option>Loading</option>}</select>
                 </form>
-                <button onClick={handleRefresh}>Refresh</button>
+                <button onClick={handleRefresh} class="refresh">Refresh</button>
             </div>
         </div >
     )

@@ -3,15 +3,12 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { getDetail } from '../../store/actions/RecipesActions';
 import "./index.css"
+import { NavLink } from 'react-router-dom';
 
 class RecipeDetail extends React.Component {
 
 
     componentDidMount() {
-        // ya sabemos que el componente fue montado
-        // ahora podemos empezar a realizar acciones con el mismo
-        // por ejemplo ... consultas con la api ..... entonces puedo invocar a la accion
-        // getMovieDetail !
         this.props.getDetail(this.props.match.params.id)
     }
 
@@ -34,8 +31,11 @@ class RecipeDetail extends React.Component {
                             <p>Steps: </p><div dangerouslySetInnerHTML={{ __html: this.props.recipeId.instructions? this.props.recipeId.instructions : "Not available"}}></div>
                         </div>
                     </div>
-                    : <h1>Loading ...</h1>
+                    : <h1 className="Loading">Loading ...</h1>
                 }
+                 <NavLink to='/home'>
+                    <button className="botonBackDetail">Back</button>
+                </NavLink>
             </div>
         );
     }

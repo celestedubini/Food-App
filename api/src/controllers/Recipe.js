@@ -82,7 +82,7 @@ async function getAllRecipes(req, res, next) {
     const recipeDB = await Recipe.findAll({
       where: {
         title: {
-          [Sequelize.Op.iLike]: `%${query}%` //%${} con esto se fija que en alguna parte de todo el string este eso
+          [Sequelize.Op.iLike]: `%${query}%`
         },
       },
       include: {
@@ -129,7 +129,6 @@ async function getRecipeById(req, res) {
 }
 
 module.exports = {
-  //getByName,
   addRecipe,
   getRecipeById,
   getAllRecipes
