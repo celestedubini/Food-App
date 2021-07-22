@@ -42,8 +42,6 @@ function Form(props) {
 
 
 
-    // utilizar React.useState para que pasen los tests con useState solo puede
-    // que no pase
     const [input, setInput] = React.useState(initialForm);
 
     const [errors, setErrors] = React.useState({});

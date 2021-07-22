@@ -73,7 +73,6 @@ export function getOrder(value) {
 }
 
 export function getOrderByScore(value) {
-    console.log(value)
     if (value === RESET) {
         return {
             type: RESET,
