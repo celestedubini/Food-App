@@ -1,20 +1,46 @@
 .formulario{
     color:white;
-    top: 326px;
-    left: 46px;
-    width: 1700px;
-    height: 84px;
-    border: white solid
 }
 
 .create{
-    top: 326px;
-    left: 46px;
-    width: 630px;
-    height: 84px;
-    text-align: center;
     font: normal normal normal 40px/86px Yeseva One;
     letter-spacing: 0px;
     color: #FFC400;
     opacity: 1;
+    margin: 0px;
+    padding: 0px;
+}
+
+.red{
+    color: orangered;
+    font:normal normal 300 20px/25px Montserrat;
+}
+
+.form1{
+  font:normal normal 300 20px/25px Montserrat;
+
+}
+
+.botonAgregar{
+    border: none;
+    cursor: pointer;
+    color: white;
+    background: #FFCA1A 0% 0% no-repeat padding-box;
+border-radius: 70px;
+width: 260px;
+height: 60px; 
+text-align: center;
+font: normal normal 300 30px/49px Montserrat;
+letter-spacing: 0px;
+color: #FFFFFF;
+opacity: 1;
+}
+
+.checkboxs{
+    column-count: 5;
+    display: inline;
+}
+
+.caja{
+    border-radius: 5px;
 }

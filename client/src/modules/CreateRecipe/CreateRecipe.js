@@ -4,24 +4,22 @@ import { getTypes } from '../../store/actions/RecipesActions';
 import { connect } from 'react-redux';
 import "./CreateRecipe.css"
 
-// export function validate(input) {
-//     let errors = {};
-
-//     if (!input.title) {
-//         errors.title = 'title is required'; // errors = {title: 'title is required'}
-//     } else if (!/\S+@\S+\.\S+/.test(input.title)) {
-//         errors.title = 'title is invalid';  // errors = {title: 'title is invalid'}
-//     }
-
-//     if(!input.summary){
-//         errors.summary = 'summary is required'; // errors = {summary: 'summary is required'}
-//         // errors = {title: 'title is required', summary: 'summary is required'}
-//     }else if(!/(?=.*[0-9])/.test(input.summary)){
-//         errors.summary = 'summary is invalid';
-//     }
-
-//     return errors; // esto es un objeto que puede tener title y/o summary
-// };
+export function validate(input) {
+    let errors = {};
+    if (!input.title) {
+        errors.title = 'Title is required';
+    }
+    if (!input.summary) {
+        errors.summary = 'Summary is required';
+    }
+    if (!/^[1-9][0-9]?$|^100$/g.test(input.spoonacularScore)) {
+        errors.spoonacularScore = 'Score is required and must be in a range from 1 - 100';
+    }
+    if (!/^[1-9][0-9]?$|^100$/g.test(input.healthScore)) {
+        errors.healthScore = 'Health Score is required and must be in a range from 1 - 100';
+    }
+    return errors;
+};
 
 function Form(props) {
     function getTypesFunction() {
@@ -44,7 +42,7 @@ function Form(props) {
         diets: [],
         image: ''
     });
-    // input = {title: '', summary: ''}
+
     const [errors, setErrors] = React.useState({});
 
     const handleInputChange = function (e) {
@@ -52,16 +50,10 @@ function Form(props) {
             ...prev, [e.target.name]: e.target.value
         }));
 
-        // setInput({...input, [e.target.name]:e.target.value})
-
-        // validate(input)
-
-        // let objError = validate({
-        //     ...input, [e.target.name]: e.target.value
-        // }); // objError = {title, summary} // {} // {title} // {summary}
-
-        // setErrors(objError);
-
+        let objError = validate({
+            ...input, [e.target.name]: e.target.value
+        });
+        setErrors(objError);
     };
 
     function handleSelect(e) {
@@ -96,56 +88,70 @@ function Form(props) {
     return (
         <div>
             <h1 className="create">Create a Recipe</h1>
-            <form onSubmit={(e) => onSubmit(e)} className="formulario">
-                <div>
-                    <label>Title * </label>
-                    <input type="text" name="title" className={errors.title && 'danger'}
-                        onChange={handleInputChange} value={input.title} required="required" />
-                    {/* {
-                    errors.title && (
-                        <p className='danger'>{errors.title}</p>
-                    )
-              } */}
-                </div>
-                <div>
-                    <label>Summary * </label>
-                    <textarea name="summary" className={errors.summary && 'danger'}
-                        onChange={handleInputChange} value={input.summary} rows="10" cols="50" required="required" />
-                    {/* {
-                  errors.summary && (
-                      <p className='danger'>{errors.summary}</p>
-                  )
-              } */}
-                </div>
-                <div>
-                    <label>Score </label>
-                    <input type="number" name="spoonacularScore" min="0" max="100"
-                        onChange={handleInputChange} value={input.spoonacularScore} />
-                </div>
-                <div>
-                    <label>Health Score </label>
-                    <input type="number" name="healthScore" min="0" max="100"
-                        onChange={handleInputChange} value={input.healthScore} />
-                </div>
-                <div>
-                    <label>Steps </label>
-                    <textarea name="instructions" className={errors.summary && 'danger'}
-                        onChange={handleInputChange} value={input.instructions} rows="10" cols="50" />
-                </div>
-                <div>
-                    <label>Select the type diets:</label>
-                    {props.diets.length !==0? props.diets.map((e) => (
-                        <div key={e.id}>
-                            <input onChange={handleSelect} type="checkbox" value={e.id} /> {e.name}
-                        </div>
-                    )):" Loading"}</div>
-                <div>
-                    <label>Image </label>
-                    <input type="url" name="image" className={errors.summary && 'danger'}
-                        onChange={handleInputChange} value={input.image} />
-                </div>
-                <input type="submit" value="Add Recipe" />
-            </form>
+            <div className="formulario">
+                <p className="red">(*) Required</p>
+                <form onSubmit={(e) => onSubmit(e)} className="form1">
+                    <div>
+                        <label>Title (*) </label>
+                        <input type="text" name="title"
+                            onChange={handleInputChange} value={input.title} required="required" className="caja"/>
+                        {
+                            errors.title && (
+                                <p className="red">{errors.title}</p>
+                            )
+                        }
+                    </div>
+                    <div>
+                        <label>Summary (*) </label>
+                        <textarea name="summary"
+                            onChange={handleInputChange} value={input.summary} rows="10" cols="50" required="required" className="caja"/>
+                        {
+                            errors.summary && (
+                                <p className="red">{errors.summary}</p>
+                            )
+                        }
+                    </div>
+                    <div>
+                        <label>Score (*)</label>
+                        <input type="number" name="spoonacularScore" min="0" max="100"
+                            onChange={handleInputChange} value={input.spoonacularScore} className="caja"/>
+                        {
+                            errors.spoonacularScore && (
+                                <p className="red">{errors.spoonacularScore}</p>
+                            )
+                        }
+                    </div>
+                    <div>
+                        <label>Health Score (*)</label>
+                        <input type="number" name="healthScore" min="0" max="100"
+                            onChange={handleInputChange} value={input.healthScore}  className="caja"/>
+                        {
+                            errors.healthScore && (
+                                <p className="red">{errors.healthScore}</p>
+                            )
+                        }
+                    </div>
+                    <div>
+                        <label>Steps </label>
+                        <textarea name="instructions"
+                            onChange={handleInputChange} value={input.instructions} rows="10" cols="50" className="caja"/>
+                    </div>
+                    <div >
+                        <label>Select the type diets:</label>
+                        {props.diets.length !== 0 ? props.diets.map((e) => (
+                            <div>
+                                <div key={e.id} className="checkboxs">
+                                    <input onChange={handleSelect} type="checkbox" value={e.id} /> {e.name}
+                                </div></div>
+                        )) : " Loading"}</div>
+                    <div>
+                        <label>Image </label>
+                        <input type="url" name="image"
+                            onChange={handleInputChange} value={input.image} className="caja"/>
+                    </div>
+                    <input type="submit" value="Add Recipe" className="botonAgregar" />
+                </form>
+            </div>
         </div>
     )
 }

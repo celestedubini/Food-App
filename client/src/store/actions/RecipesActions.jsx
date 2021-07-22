@@ -18,6 +18,7 @@ export function getRecipes() {
                 payload: response.data
             })
         })
+        .catch((error) => console.log(error));
     }
 }
 
@@ -28,7 +29,7 @@ export function getByName(title) {
                 type: GET_RECIPES_BY_NAME,
                 payload: response.data
             })
-        })
+        }).catch((error) => console.log(error));
     }
 }
 
@@ -39,7 +40,7 @@ export function getDetail(id) {
                 type: GET_RECIPE_DETAIL,
                 payload: response.data
             })
-        })
+        }).catch((error) => console.log(error));
     }
 }
 
@@ -50,7 +51,7 @@ export function getTypes() {
                 type: GET_TYPES,
                 payload: response.data
             })
-        })
+        }).catch((error) => console.log(error));
     }
 }
 

@@ -16,7 +16,7 @@ const renderData = (recipes) => {
                         <p className="recipeName">{recipe.title}</p></NavLink>
                     <p>Types of Diet: {typeof recipe.diets[0] === "object" ? recipe.diets.map(diet => Object.values(diet)).join(", ") : recipe.diets.map(diet => diet).join(", ")}</p>
                 </div>
-            }) : "No recipes available!"}</div>)
+            }) : <div className="no">No recipes available!</div>}</div>)
 }
 
 function PaginationComponent({ recipes, getRecipes }) {
