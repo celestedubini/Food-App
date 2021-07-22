@@ -44,3 +44,26 @@ opacity: 1;
 .caja{
     border-radius: 5px;
 }
+
+.botonBack{
+    border: none;
+    cursor: pointer;
+    color: white;
+    background: #FFCA1A 0% 0% no-repeat padding-box;
+border-radius: 70px;
+width: 260px;
+height: 60px; 
+text-align: center;
+font: normal normal 300 30px/49px Montserrat;
+letter-spacing: 0px;
+color: #FFFFFF;
+opacity: 1;
+right: 200px;
+top: 275px;
+position: absolute;
+}
+
+.orden{
+    display: flex;
+    justify-content: center;
+}

@@ -7,14 +7,13 @@
   background: #131217 0% 0% no-repeat padding-box;
   justify-content: space-between;
   color: white;
+  margin-left: 80px;
 }
 
 .titulo{
 display: flex;
-/* padding: 3px; */
 align-items: center;
 font-weight:600;
-/* font-size: large; */
 flex-direction: column;
 background: #FFFFFF00 0% 0% no-repeat padding-box;
 border: 2px solid #FFFFFF;
@@ -33,10 +32,3 @@ height: 133px;
   color:white
 }
 
-.activeCreacion{
-  color:#FFC400;
-}
-
-.creacion{
-  color: white;
-}

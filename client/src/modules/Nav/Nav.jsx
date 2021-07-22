@@ -7,15 +7,10 @@ import SearchBar from '../SearchBar/SearchBar';
 function Nav({onSearch}) {
   return (
     <nav className="nav">
-      <NavLink to='/home'>
+      <NavLink to='/'>
         <span className="titulo">
           <div className="henryTitle">Henry</div>
           <div className="foodTitle">Food</div>
-        </span>
-      </NavLink>
-      <NavLink to='/recipe' activeClassName="activeCreacion">
-        <span className="creacion">
-          Create Recipe
         </span>
       </NavLink>
       <SearchBar

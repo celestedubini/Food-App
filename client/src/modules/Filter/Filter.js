@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getOrder, getOrderByScore, filterByDiet, getTypes } from "../../store/actions/RecipesActions"
+import { NavLink } from 'react-router-dom';
 import "./Filter.css"
 
 function Filter(props) {
@@ -33,6 +34,11 @@ function Filter(props) {
     return (
         <div>
             <div className="filter">
+                <NavLink to='/recipe'>
+                    <button className="creacion">
+                        Create Recipe
+                    </button>
+                </NavLink>
                 <form className="espaciado">
                     <p>Order by Score</p>
                     <select onChange={handleOrderByScore} className="margen">
@@ -51,17 +57,13 @@ function Filter(props) {
                 </form>
                 <form className="espaciado">
                     <p>Filter by Type Diets</p>
-                    <select onChange={handleFilter}  className="margen">
+                    <select onChange={handleFilter} className="margen">
                         <option value='All'>All</option>
                         {props.diets.length !== 0 ? props.diets.map((e) => (
                             <option key={e.id} value={e.name} > {e.name} </option>
                         )) : <option>Loading</option>}</select>
                 </form>
-
-
             </div>
-
-
         </div >
     )
 }
