@@ -121,7 +121,7 @@ function Form(props) {
                     <div>
                         <label>Score (*)</label>
                         <input type="number" name="spoonacularScore" min="0" max="100"
-                            onChange={handleInputChange} value={input.spoonacularScore} className="caja" />
+                            onChange={handleInputChange} value={input.spoonacularScore} required="required" className="caja" />
                         {
                             errors.spoonacularScore && (
                                 <p className="red">{errors.spoonacularScore}</p>
@@ -131,7 +131,7 @@ function Form(props) {
                     <div>
                         <label>Health Score (*)</label>
                         <input type="number" name="healthScore" min="0" max="100"
-                            onChange={handleInputChange} value={input.healthScore} className="caja" />
+                            onChange={handleInputChange} value={input.healthScore} required="required" className="caja" />
                         {
                             errors.healthScore && (
                                 <p className="red">{errors.healthScore}</p>
