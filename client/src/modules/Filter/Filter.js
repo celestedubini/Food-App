@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, connect } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { getOrder, getOrderByScore, filterByDiet, getTypes } from "../../store/actions/RecipesActions"
+import { getOrder, getOrderByScore, filterByDiet, getTypes, getRecipes } from "../../store/actions/RecipesActions"
 import { NavLink } from 'react-router-dom';
 import "./Filter.css"
 
@@ -29,6 +29,10 @@ function Filter(props) {
     function handleFilter(e) {
         setFilterDiets(e.target.value)
         dispatch(filterByDiet(e.target.value.toLowerCase()))
+    }
+
+    function handleRefresh(e) {
+        dispatch(getRecipes())
     }
 
     return (
@@ -63,6 +67,7 @@ function Filter(props) {
                             <option key={e.id} value={e.name} > {e.name} </option>
                         )) : <option>Loading</option>}</select>
                 </form>
+                <button onClick={handleRefresh}>Refresh</button>
             </div>
         </div >
     )
