@@ -95,65 +95,69 @@ function Form(props) {
             <div className="formulario">
                 <p className="redSub">(*) Please fill in the required field</p>
                 <form onSubmit={(e) => onSubmit(e)} className="form1">
-                    <div className="tamañoInput">
-                        <label>Title (*) </label>
-                        <input type="text" name="title"
-                            onChange={handleInputChange} value={input.title} required="required" className="caja" />
-                        {
-                            errors.title && (
-                                <p className="red">{errors.title}</p>
-                            )
-                        }
+                    <div className="columnasForm">
+                        <div className="tamañoInput">
+                            <label>Title (*) </label>
+                            <input type="text" name="title"
+                                onChange={handleInputChange} value={input.title} required="required" className="caja" />
+                            {
+                                errors.title && (
+                                    <p className="red">{errors.title}</p>
+                                )
+                            }
+                        </div>
+                        <div className="tamañoInput">
+                            <label>Summary (*) </label>
+                            <textarea name="summary"
+                                onChange={handleInputChange} value={input.summary} rows="10" cols="50" required="required" className="caja" />
+                            {
+                                errors.summary && (
+                                    <p className="red">{errors.summary}</p>
+                                )
+                            }
+                        </div>
+                        <div className="tamañoInput">
+                            <label>Score (*)</label>
+                            <input type="number" name="spoonacularScore" min="0" max="100"
+                                onChange={handleInputChange} value={input.spoonacularScore} required="required" className="caja" />
+                            {
+                                errors.spoonacularScore && (
+                                    <p className="red">{errors.spoonacularScore}</p>
+                                )
+                            }
+                        </div>
+                        <div className="tamañoInput">
+                            <label>Health Score (*)</label>
+                            <input type="number" name="healthScore" min="0" max="100"
+                                onChange={handleInputChange} value={input.healthScore} required="required" className="caja" />
+                            {
+                                errors.healthScore && (
+                                    <p className="red">{errors.healthScore}</p>
+                                )
+                            }
+                        </div>
                     </div>
-                    <div className="tamañoInput">
-                        <label>Summary (*) </label>
-                        <textarea name="summary"
-                            onChange={handleInputChange} value={input.summary} rows="10" cols="50" required="required" className="caja" />
-                        {
-                            errors.summary && (
-                                <p className="red">{errors.summary}</p>
-                            )
-                        }
+                    <div className="columnasForm">
+                        <div className="tamañoInput">
+                            <label>Steps </label>
+                            <textarea name="instructions"
+                                onChange={handleInputChange} value={input.instructions} rows="10" cols="60" className="caja" />
+                        </div>
+                        <div className="tamañoInput">
+                            <label>Select the types of diets</label>
+                            {props.diets.length !== 0 ? (<div className="cajitas"> {props.diets.map((e) => (
+                                <div className="spaciar">
+                                    <div key={e.id} className="checkboxs">
+                                        <input onChange={handleSelect} type="checkbox" value={e.id} /> {e.name}
+                                    </div></div>
+                            ))}</div>) : " Loading"}</div>
                     </div>
-                    <div className="tamañoInput">
-                        <label>Score (*)</label>
-                        <input type="number" name="spoonacularScore" min="0" max="100"
-                            onChange={handleInputChange} value={input.spoonacularScore} required="required" className="caja" />
-                        {
-                            errors.spoonacularScore && (
-                                <p className="red">{errors.spoonacularScore}</p>
-                            )
-                        }
-                    </div>
-                    <div className="tamañoInput">
-                        <label>Health Score (*)</label>
-                        <input type="number" name="healthScore" min="0" max="100"
-                            onChange={handleInputChange} value={input.healthScore} required="required" className="caja" />
-                        {
-                            errors.healthScore && (
-                                <p className="red">{errors.healthScore}</p>
-                            )
-                        }
-                    </div>
-                    <div className="tamañoInput">
-                        <label>Steps </label>
-                        <textarea name="instructions"
-                            onChange={handleInputChange} value={input.instructions} rows="10" cols="60" className="caja" />
-                    </div>
-                    <div className="tamañoInput">
-                        <label>Select the type diets:</label>
-                        {props.diets.length !== 0 ? (<div className="cajitas"> {props.diets.map((e) => (
-                            <div className="spaciar">
-                                <div key={e.id} className="checkboxs">
-                                    <input onChange={handleSelect} type="checkbox" value={e.id} /> {e.name}
-                                </div></div>
-                        ))}</div> ): " Loading"}</div>
-                    <div className="tamañoInput">
-                        <label>Image </label>
-                        <input type="url" name="image"
-                            onChange={handleInputChange} value={input.image} className="caja" />
-                    </div>
-                    <div className="pad">
+                    <div className="columnasForm">
+                        <div className="ultimoInput">
+                            <label>Image </label>
+                            <input type="url" name="image"
+                                onChange={handleInputChange} value={input.image} className="caja" />
+                        </div>
                         <input type="submit" value="Add Recipe" className="botonAgregar" />
                     </div>
                 </form>
