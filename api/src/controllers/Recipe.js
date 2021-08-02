@@ -54,13 +54,12 @@ async function getAllRecipes(req, res, next) {
         }
       }
     });
-    Promise.all([infoNeededApi, recipeDB])
-      .then((respuesta) => {
-        let [recipeApiRes, recipeDBres] = respuesta;
+    const response = await Promise.all([infoNeededApi, recipeDB])
+        let [recipeApiRes, recipeDBres] = response;
         return res.send(
           recipeDBres.concat(recipeApiRes)
         );
-      })}
+        }
       catch(err){(next(err));}
   } else {
     const query = q.toLowerCase();

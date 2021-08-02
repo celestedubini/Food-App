@@ -5,7 +5,7 @@ import "./index.css";
 function LandingPage() {
     return (
         <div className="landing">
-            <div>
+            <div className="acomodar">
                 <div className="intro">
                     <div className="henrymain">Henry</div>
                     <div className="foodmain">Food</div>

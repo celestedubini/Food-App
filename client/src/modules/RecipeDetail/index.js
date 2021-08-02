@@ -24,7 +24,7 @@ const dispatch = useDispatch()
                         <img src={props.recipeId.image} alt={"img"} className="fotito"/>
                         <div className="texto">
                             <p>Types of Diet: {props.recipeId.diets.length !== 0? typeof props.recipeId.diets[0] === "object" ? 
-                            props.recipeId.diets.map(diet => Object.values(diet)).join(", ") : props.recipeId.diets.map(diet => diet).join(", ") : "Not available"}</p>
+                            props.recipeId.diets.map(diet => Object.values(diet)).join(", ") : props.recipeId.diets.map(diet => diet.charAt(0).toUpperCase() + diet.substr(1)).join(", ") : "Not available"}</p>
                             <p>Summary: </p><div dangerouslySetInnerHTML={{ __html: props.recipeId.summary }}></div>
                             <p>Score: {props.recipeId.spoonacularScore}</p>
                             <p>Health Score: {props.recipeId.healthScore}</p>

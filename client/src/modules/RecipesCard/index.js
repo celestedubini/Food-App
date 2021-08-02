@@ -14,7 +14,7 @@ const renderData = (recipes) => {
                     <NavLink to={`/home/${recipe.id}`}>
                         <img src={recipe.image} alt="Foto de la receta" className="Foto"></img> 
                         <p className="recipeName">{recipe.title}</p></NavLink>
-                    <p>Types of Diet: {recipe.diets.length !== 0? typeof recipe.diets[0] === "object" ? recipe.diets.map(diet => Object.values(diet)).join(", ") : recipe.diets.map(diet => diet).join(", "): "Not available"}</p>
+                    <p>Types of Diet: {recipe.diets.length !== 0? recipe.diets.map(diet => Object.values(diet)).join(", ").toLowerCase(): "Not available"}</p>
                 </div>
             }) : <div className="no">No recipes available!</div>}</div>)
 }

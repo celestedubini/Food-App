@@ -67,7 +67,9 @@ function Filter(props) {
                             <option key={e.id} value={e.name} > {e.name} </option>
                         )) : <option>Loading</option>}</select>
                 </form>
-                <button onClick={handleRefresh} class="refresh">Refresh</button>
+                {props.recipes.length < props.recipesOriginal.length &&
+                    (<button onClick={handleRefresh} className="refresh">Refresh ↻</button>)
+                }
             </div>
         </div >
     )
@@ -75,7 +77,9 @@ function Filter(props) {
 
 const mapStateToProps = state => {
     return {
-        diets: state.diets
+        diets: state.diets,
+        recipes: state.recipes,
+        recipesOriginal: state.recipesOriginal
     }
 }
 

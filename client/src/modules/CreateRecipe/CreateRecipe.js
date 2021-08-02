@@ -78,7 +78,6 @@ function Form(props) {
             }
             let res = await fetch("http://localhost:3001/recipe", config)
             let json = await res.json()
-            console.log(json)
             setInput(initialForm)
             alert('Recipe created successfully!');
         } catch (error) {
@@ -89,14 +88,14 @@ function Form(props) {
 
     return (
         <div>
-                <h1 className="create">Create a Recipe</h1>
-                <NavLink to='/home'>
-                    <button className="botonBack">Back</button>
-                </NavLink>
+            <h1 className="create">Create a Recipe</h1>
+            <NavLink to='/home'>
+                <button className="botonBack">Back</button>
+            </NavLink>
             <div className="formulario">
-                <p className="red">(*) Required</p>
+                <p className="redSub">(*) Please fill in the required field</p>
                 <form onSubmit={(e) => onSubmit(e)} className="form1">
-                    <div>
+                    <div className="tamañoInput">
                         <label>Title (*) </label>
                         <input type="text" name="title"
                             onChange={handleInputChange} value={input.title} required="required" className="caja" />
@@ -106,7 +105,7 @@ function Form(props) {
                             )
                         }
                     </div>
-                    <div>
+                    <div className="tamañoInput">
                         <label>Summary (*) </label>
                         <textarea name="summary"
                             onChange={handleInputChange} value={input.summary} rows="10" cols="50" required="required" className="caja" />
@@ -116,7 +115,7 @@ function Form(props) {
                             )
                         }
                     </div>
-                    <div>
+                    <div className="tamañoInput">
                         <label>Score (*)</label>
                         <input type="number" name="spoonacularScore" min="0" max="100"
                             onChange={handleInputChange} value={input.spoonacularScore} required="required" className="caja" />
@@ -126,7 +125,7 @@ function Form(props) {
                             )
                         }
                     </div>
-                    <div>
+                    <div className="tamañoInput">
                         <label>Health Score (*)</label>
                         <input type="number" name="healthScore" min="0" max="100"
                             onChange={handleInputChange} value={input.healthScore} required="required" className="caja" />
@@ -136,26 +135,27 @@ function Form(props) {
                             )
                         }
                     </div>
-                    <div>
+                    <div className="tamañoInput">
                         <label>Steps </label>
                         <textarea name="instructions"
-                            onChange={handleInputChange} value={input.instructions} rows="10" cols="50" className="caja" />
+                            onChange={handleInputChange} value={input.instructions} rows="10" cols="60" className="caja" />
                     </div>
-                    <div >
+                    <div className="tamañoInput">
                         <label>Select the type diets:</label>
-                        {props.diets.length !== 0 ? props.diets.map((e) => (
-                            <div>
+                        {props.diets.length !== 0 ? (<div className="cajitas"> {props.diets.map((e) => (
+                            <div className="spaciar">
                                 <div key={e.id} className="checkboxs">
                                     <input onChange={handleSelect} type="checkbox" value={e.id} /> {e.name}
                                 </div></div>
-                        )) : " Loading"}</div>
-                    <div>
+                        ))}</div> ): " Loading"}</div>
+                    <div className="tamañoInput">
                         <label>Image </label>
                         <input type="url" name="image"
                             onChange={handleInputChange} value={input.image} className="caja" />
                     </div>
-
-                    <input type="submit" value="Add Recipe" className="botonAgregar" />
+                    <div className="pad">
+                        <input type="submit" value="Add Recipe" className="botonAgregar" />
+                    </div>
                 </form>
             </div>
 
