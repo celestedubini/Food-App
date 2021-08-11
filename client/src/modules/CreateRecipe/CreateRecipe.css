@@ -60,6 +60,7 @@ margin-top: 20px;
 
 .caja{
     border-radius: 5px;
+    outline: none;
 }
 
 .botonBack{

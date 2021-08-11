@@ -68,7 +68,7 @@ function Filter(props) {
                         )) : <option>Loading</option>}</select>
                 </form>
                 {props.recipes.length < props.recipesOriginal.length &&
-                    (<button onClick={handleRefresh} className="refresh">Refresh ↻</button>)
+                    (<button onClick={handleRefresh} className="refresh">Clear</button>)
                 }
             </div>
         </div >
