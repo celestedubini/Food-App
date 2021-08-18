@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from "axios";
 import { useEffect } from 'react';
 import { getTypes } from '../../store/actions/RecipesActions';
 import { connect } from 'react-redux';
@@ -68,16 +69,9 @@ function Form(props) {
     const onSubmit = async function (e) {
         e.preventDefault();
         try {
-            let config = {
-                method: "POST",
-                headers: {
-                    "Accept": "Application/json",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(input)
-            }
-            let res = await fetch("http://localhost:3001/recipe", config)
-            let json = await res.json()
+            await axios.post("/recipe", JSON.stringify(input), {
+                headers: { "Content-Type": "application/json" },
+              });
             setInput(initialForm)
             alert('Recipe created successfully!');
         } catch (error) {
