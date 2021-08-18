@@ -5,11 +5,6 @@ import RecipeDetail from './modules/RecipeDetail';
 import Nav from './modules/Nav/Nav';
 import { Route, Switch } from 'react-router-dom';
 import CreateRecipe from './modules/CreateRecipe/CreateRecipe';
-import axios from "axios";
-import dotenv from "dotenv";
-dotenv.config();
-
-axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
 
 function App() {
   return (
