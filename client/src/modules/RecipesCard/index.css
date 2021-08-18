@@ -25,7 +25,7 @@
     cursor: pointer;
   }
   .pageNumbers li button:hover {
-    background-color: white;
+    background-color: gray;
     color: white;
   }
   .pageNumbers li button:focus {
