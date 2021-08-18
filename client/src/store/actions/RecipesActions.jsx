@@ -12,7 +12,7 @@ export const RESET = "Reset"
 
 export function getRecipes() {
     return function (dispatch) {
-        return axios.get("http://localhost:3001/recipes").then((response) => {
+        return axios.get("/recipes").then((response) => {
             dispatch({
                 type: GET_RECIPES,
                 payload: response.data
@@ -24,7 +24,7 @@ export function getRecipes() {
 
 export function getByName(title) {
     return function (dispatch) {
-        return axios.get("http://localhost:3001/recipes?name=" + title).then((response) => {
+        return axios.get("/recipes?name=" + title).then((response) => {
             dispatch({
                 type: GET_RECIPES_BY_NAME,
                 payload: response.data
@@ -35,7 +35,7 @@ export function getByName(title) {
 
 export function getDetail(id) {
     return function (dispatch) {
-        return axios.get("http://localhost:3001/recipes/" + id).then((response) => {
+        return axios.get("/recipes/" + id).then((response) => {
             dispatch({
                 type: GET_RECIPE_DETAIL,
                 payload: response.data
@@ -46,7 +46,7 @@ export function getDetail(id) {
 
 export function getTypes() {
     return function (dispatch) {
-        return axios.get("http://localhost:3001/types").then((response) => {
+        return axios.get("/types").then((response) => {
             dispatch({
                 type: GET_TYPES,
                 payload: response.data
