@@ -1,8 +1,8 @@
-# Individual Project - Food App
+# 🍕 Individual Project - Food App 🍳
 
  <img src="./Landing Page.png" />
 
-## Statement
+## About the project
 
 The Henry Food App was developed during the [Henry](https://www.soyhenry.com/) Bootcamp. The idea was to create an App where you get different food recipes along with relevant information about them using an external api: [spoonacular](https://spoonacular.com/food-api), and from that, among other things:
 
